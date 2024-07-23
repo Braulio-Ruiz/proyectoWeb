@@ -19,5 +19,6 @@ $productos = $producto->obtenerTodos();
 // Se espera que el archivo 'home.php' utilice la variable '$productos' para mostrar la lista de productos.
 include 'views/home.php';
 
+// Termina la ejecución del script.
 // Esto asegura que no se ejecutará ningún código adicional después de la inclusión de 'home.php'.
 exit;
