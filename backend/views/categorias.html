@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar categorías ..:: SiberOS ::..</title>
+    <link rel="stylesheet" href="../../assets/css/estilos.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <a href="../../index.php">
+        <header>
+            <img src="../../assets/img/logo.png" alt="Logo de la Empresa" class="logo">
+            <h1>Agregar nuevas categorías</h1>
+        </header>
+    </a>
+    <div class="container">
+        <form id="formCategorias" action="../categorias.php" method="post">
+            <label for="nombreCategoria">Nombre de la Categoría:</label>
+            <input type="text" id="nombreCategoria" name="nombre">
+            <button type="submit">Guardar</button>
+            <button class="btn-cancelar" type="reset">Cancelar</button>
+        </form>
+        <p>Creado por Braulio Ruiz Niñoles</p>
+    </div>
+    <script src="../../assets/js/validaciones.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+
+</html>
