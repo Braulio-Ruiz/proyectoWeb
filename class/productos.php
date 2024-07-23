@@ -1,53 +1,80 @@
 <?php
 /* @autor Braulio Ruiz */
+// Inicio del script PHP. Comentario para indicar el autor del código.
 
 class Productos
 {
-    private $id;
-    private $nombre;
-    private $imagen;
-    private $descripcion;
-    private $precio;
-    private $categoria_id;
-    private $db;
+    // Definición de la clase 'Productos' para manejar las operaciones relacionadas con los productos.
+
+    // Declaración de propiedades privadas.
+    private $id;                // Identificador único del producto.
+    private $nombre;            // Nombre del producto.
+    private $imagen;            // Ruta de la imagen del producto.
+    private $descripcion;       // Descripción del producto.
+    private $precio;            // Precio del producto.
+    private $categoria_id;      // Identificador de la categoría a la que pertenece el producto.
+    private $db;                // Instancia de la clase 'Database' para manejar las operaciones de base de datos.
 
     public function __construct()
     {
+        // Método constructor de la clase, se ejecuta automáticamente al crear una instancia de la clase.
+
         $this->db = new Database();
+        // Crea una nueva instancia de la clase 'Database' y la asigna a la propiedad '$db'.
     }
 
     public function setId($id)
     {
+        // Método para establecer el valor de la propiedad '$id'.
+
         $this->id = $id;
+        // Asigna el valor del parámetro '$id' a la propiedad '$id'.
     }
 
     public function setNombre($nombre)
     {
+        // Método para establecer el valor de la propiedad '$nombre'.
+
         $this->nombre = $nombre;
+        // Asigna el valor del parámetro '$nombre' a la propiedad '$nombre'.
     }
 
     public function setImagen($imagen)
     {
+        // Método para establecer el valor de la propiedad '$imagen'.
+
         $this->imagen = $imagen;
+        // Asigna el valor del parámetro '$imagen' a la propiedad '$imagen'.
     }
 
     public function setDescripcion($descripcion)
     {
+        // Método para establecer el valor de la propiedad '$descripcion'.
+
         $this->descripcion = $descripcion;
+        // Asigna el valor del parámetro '$descripcion' a la propiedad '$descripcion'.
     }
 
     public function setPrecio($precio)
     {
+        // Método para establecer el valor de la propiedad '$precio'.
+
         $this->precio = $precio;
+        // Asigna el valor del parámetro '$precio' a la propiedad '$precio'.
     }
 
     public function setCategoriaId($categoria_id)
     {
+        // Método para establecer el valor de la propiedad '$categoria_id'.
+
         $this->categoria_id = $categoria_id;
+        // Asigna el valor del parámetro '$categoria_id' a la propiedad '$categoria_id'.
     }
 
     public function guardar()
     {
+        // Método para guardar un producto en la base de datos.
+
         $data = [
             'id' => $this->id,
             'nombre' => $this->nombre,
@@ -56,16 +83,25 @@ class Productos
             'precio' => $this->precio,
             'categoria_id' => $this->categoria_id,
         ];
+        // Crea un array asociativo con los valores de las propiedades de la clase.
+
         $this->db->insert('productos', $data);
+        // Llama al método 'insert' de la clase 'Database' para insertar los datos en la tabla 'productos'.
     }
 
     public function eliminar()
     {
+        // Método para eliminar un producto de la base de datos.
+
         $this->db->delete('productos', "id = $this->id");
+        // Llama al método 'delete' de la clase 'Database' para eliminar el registro de la tabla 'productos' donde el 'id' coincide con el valor de la propiedad '$id'.
     }
 
     public function obtenerTodos()
     {
+        // Método para obtener todos los productos de la base de datos.
+
         return $this->db->select('SELECT * FROM productos');
+        // Llama al método 'select' de la clase 'Database' para ejecutar una consulta SQL que obtiene todos los registros de la tabla 'productos' y devuelve el resultado.
     }
 }
