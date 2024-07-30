@@ -8,11 +8,14 @@ include '../class/autoload.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verifica si la solicitud HTTP es de tipo POST, lo que indica que el formulario fue enviado.
 
-    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : null;
-    // Asigna el valor de 'nombre' del formulario POST a la variable $nombre, o null si no está definido.
+    $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : null;
+    // Asigna el valor de 'nombre' del formulario POST a la variable $nombre, eliminando espacios en blanco al principio y al final, o null si no está definido.
 
     if ($nombre) {
         // Verifica si la variable $nombre tiene un valor.
+
+        // Sanitiza la entrada para evitar XSS
+        $nombre = htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8');
 
         $categoria = new Categorias();
         // Crea una nueva instancia de la clase Categorias.

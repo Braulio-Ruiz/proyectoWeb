@@ -24,7 +24,7 @@ class Categorias
     {
         // Método para establecer el ID de la categoría.
 
-        $this->id = $id;
+        $this->id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
         // Asigna el valor del parámetro '$id' a la propiedad privada '$id' de la clase.
     }
 
@@ -32,7 +32,7 @@ class Categorias
     {
         // Método para establecer el nombre de la categoría.
 
-        $this->nombre = $nombre;
+        $this->nombre = htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8');
         // Asigna el valor del parámetro '$nombre' a la propiedad privada '$nombre' de la clase.
     }
 
@@ -83,5 +83,13 @@ class Categorias
         return $this->db->select('SELECT * FROM categorias');
         // Llama al método 'select' de la clase 'Database' para obtener todas las filas de la tabla 'categorias'.
         // Devuelve el resultado de la consulta.
+    }
+
+    // Método para buscar categorias por nombre
+    public function buscar($term)
+    {
+        $search = "%{$term}%";
+        $sql = "SELECT * FROM categorias WHERE nombre LIKE ?";
+        return $this->db->select($sql, [$search]);
     }
 }

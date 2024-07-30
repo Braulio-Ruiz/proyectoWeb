@@ -2,6 +2,8 @@
 /* @autor Braulio Ruiz */
 // Inicio del script PHP. Comentario para indicar el autor del código.
 
+include 'autoload.php';
+
 class Productos
 {
     // Definición de la clase 'Productos' para manejar las operaciones relacionadas con los productos.
@@ -27,7 +29,7 @@ class Productos
     {
         // Método para establecer el valor de la propiedad '$id'.
 
-        $this->id = $id;
+        $this->id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
         // Asigna el valor del parámetro '$id' a la propiedad '$id'.
     }
 
@@ -35,7 +37,7 @@ class Productos
     {
         // Método para establecer el valor de la propiedad '$nombre'.
 
-        $this->nombre = $nombre;
+        $this->nombre = htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8');
         // Asigna el valor del parámetro '$nombre' a la propiedad '$nombre'.
     }
 
@@ -43,7 +45,7 @@ class Productos
     {
         // Método para establecer el valor de la propiedad '$imagen'.
 
-        $this->imagen = $imagen;
+        $this->imagen = htmlspecialchars($imagen, ENT_QUOTES, 'UTF-8');
         // Asigna el valor del parámetro '$imagen' a la propiedad '$imagen'.
     }
 
@@ -51,23 +53,24 @@ class Productos
     {
         // Método para establecer el valor de la propiedad '$descripcion'.
 
-        $this->descripcion = $descripcion;
+        $this->descripcion = htmlspecialchars($descripcion, ENT_QUOTES, 'UTF-8');
         // Asigna el valor del parámetro '$descripcion' a la propiedad '$descripcion'.
     }
 
     public function setPrecio($precio)
     {
-        // Método para establecer el valor de la propiedad '$precio'.
-
-        $this->precio = $precio;
-        // Asigna el valor del parámetro '$precio' a la propiedad '$precio'.
+        if (is_numeric($precio) && $precio > 0) {
+            $this->precio = $precio;
+        } else {
+            throw new Exception('Precio inválido.');
+        }
     }
 
     public function setCategoriaId($categoria_id)
     {
         // Método para establecer el valor de la propiedad '$categoria_id'.
 
-        $this->categoria_id = $categoria_id;
+        $this->categoria_id = htmlspecialchars($categoria_id, ENT_QUOTES, 'UTF-8');
         // Asigna el valor del parámetro '$categoria_id' a la propiedad '$categoria_id'.
     }
 
@@ -103,5 +106,13 @@ class Productos
 
         return $this->db->select('SELECT * FROM productos');
         // Llama al método 'select' de la clase 'Database' para ejecutar una consulta SQL que obtiene todos los registros de la tabla 'productos' y devuelve el resultado.
+    }
+
+    // Método para buscar productos por nombre
+    public function buscar($term)
+    {
+        $search = "%{$term}%";
+        $sql = "SELECT * FROM productos WHERE nombre LIKE ?";
+        return $this->db->select($sql, [$search]);
     }
 }

@@ -1,8 +1,18 @@
 /* Validaciones para los formularios de categorías y productos */
 /* Creado por Braulio Ruiz Niñoles */
 
+// Esta función se ejecuta cuando el documento HTML está completamente cargado y listo.
 $(document).ready(function () {
-    // Esta función se ejecuta cuando el documento HTML está completamente cargado y listo.
+
+    // Validación en tiempo real del formulario
+    $("#formCategorias input, #formProductos input").on('keyup blur', function () {
+        var $this = $(this);
+        if ($this.val().trim() === "") {
+            $this.addClass('error');  // Añadir clase de error al campo vacío
+        } else {
+            $this.removeClass('error');  // Eliminar clase de error si el campo no está vacío
+        }
+    });
 
     // Validación del formulario de categorías
     $("#formCategorias").submit(function (event) {

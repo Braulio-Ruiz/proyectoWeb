@@ -7,23 +7,20 @@ include '../class/autoload.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verifica si la solicitud HTTP es de tipo POST, lo que indica que el formulario fue enviado.
 
-    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : null;
-    // Asigna el valor de 'nombre' del formulario POST a la variable $nombre, o null si no está definido.
+    $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : null;
+    $descripcion = isset($_POST['descripcion']) ? trim($_POST['descripcion']) : null;
+    $precio = isset($_POST['precio']) ? trim($_POST['precio']) : null;
+    $categoria_id = isset($_POST['categoria_id']) ? trim($_POST['categoria_id']) : null;
+    $imagen = isset($_FILES['imagen']['name']) ? $_FILES['imagen']['name'] : null;
 
-    $descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : null;
-    // Asigna el valor de 'descripcion' del formulario POST a la variable $descripcion, o null si no está definido.
+    // Sanitizar entradas para evitar XSS
+    $nombre = htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8');
+    $descripcion = htmlspecialchars($descripcion, ENT_QUOTES, 'UTF-8');
+    $precio = htmlspecialchars($precio, ENT_QUOTES, 'UTF-8');
+    $categoria_id = htmlspecialchars($categoria_id, ENT_QUOTES, 'UTF-8');
 
-    $precio = isset($_POST['precio']) ? $_POST['precio'] : null;
-    // Asigna el valor de 'precio' del formulario POST a la variable $precio, o null si no está definido.
-
-    $categoria_id = isset($_POST['categoria_id']) ? $_POST['categoria_id'] : null;
-    // Asigna el valor de 'categoria_id' del formulario POST a la variable $categoria_id, o null si no está definido.
-
-    if ($nombre && $descripcion && $precio && $categoria_id && isset($_FILES['imagen']['name'])) {
-        // Verifica si todas las variables (nombre, descripcion, precio, categoria_id) están definidas y si se ha subido un archivo de imagen.
-
-        $imagen = $_FILES['imagen']['name'];
-        // Asigna el nombre del archivo de la imagen a la variable $imagen.
+    if ($nombre && $descripcion && $precio && $categoria_id && $imagen) {
+        // Verifica si todas las variables (nombre, descripcion, precio, categoria_id, imagen) están definidas.
 
         $target_dir = "../assets/img/";
         // Define el directorio de destino para la imagen subida.
@@ -31,39 +28,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $target_file = $target_dir . basename($imagen);
         // Define la ruta completa del archivo de destino concatenando el directorio de destino y el nombre base del archivo.
 
-        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $target_file)) {
-            // Mueve el archivo subido desde su ubicación temporal a la ubicación de destino.
-            // Si la operación es exitosa, continúa con la siguiente lógica.
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-            $producto = new Productos();
-            // Crea una nueva instancia de la clase Productos.
-
-            $producto->setNombre($nombre);
-            // Establece el nombre del producto usando el método setNombre().
-
-            $producto->setDescripcion($descripcion);
-            // Establece la descripción del producto usando el método setDescripcion().
-
-            $producto->setImagen($imagen);
-            // Establece la imagen del producto usando el método setImagen().
-
-            $producto->setPrecio($precio);
-            // Establece el precio del producto usando el método setPrecio().
-
-            $producto->setCategoriaId($categoria_id);
-            // Establece la categoría del producto usando el método setCategoriaId().
-
-            $producto->guardar();
-            // Guarda el producto en la base de datos usando el método guardar().
-
-            header('Location: views/lista_productos.php');
-            // Redirige al usuario a la página 'lista_productos.php' en el directorio 'views/'.
-
-            exit;
-            // Finaliza el script para asegurar que no se ejecute ningún código adicional.
+        // Compruebe si el archivo de imagen es una imagen real o una imagen falsa
+        $check = getimagesize($_FILES['imagen']['tmp_name']);
+        if ($check !== false) {
+            $uploadOk = 1;
         } else {
-            echo "Error al subir la imagen.";
-            // Si el archivo no se pudo mover, muestra un mensaje de error.
+            echo "El archivo no es una imagen.";
+            $uploadOk = 0;
+        }
+
+        // Comprobar si el archivo ya existe
+        if (file_exists($target_file)) {
+            echo "Lo siento, el archivo ya existe.";
+            $uploadOk = 0;
+        }
+
+        // Comprobar el tamaño del archivo
+        if ($_FILES['imagen']['size'] > 500000) { // 500KB max file size
+            echo "Lo siento, tu archivo es demasiado grande.";
+            $uploadOk = 0;
+        }
+
+        // Permitir ciertos formatos de archivo
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+            echo "Lo siento, solo se permiten archivos JPG, JPEG, PNG & GIF.";
+            $uploadOk = 0;
+        }
+
+        // Compruebe si $uploadOk está establecido en 0 por un error
+        if ($uploadOk == 0) {
+            echo "Lo siento, tu archivo no fue subido.";
+            // Si todo está bien, intenta subir el archivo.
+        } else {
+            if (move_uploaded_file($_FILES['imagen']['tmp_name'], $target_file)) {
+                // Mueve el archivo subido desde su ubicación temporal a la ubicación de destino.
+                // Si la operación es exitosa, continúa con la siguiente lógica.
+
+                $producto = new Productos();
+                // Crea una nueva instancia de la clase Productos.
+
+                $producto->setNombre($nombre);
+                // Establece el nombre del producto usando el método setNombre().
+
+                $producto->setDescripcion($descripcion);
+                // Establece la descripción del producto usando el método setDescripcion().
+
+                $producto->setImagen($imagen);
+                // Establece la imagen del producto usando el método setImagen().
+
+                $producto->setPrecio($precio);
+                // Establece el precio del producto usando el método setPrecio().
+
+                $producto->setCategoriaId($categoria_id);
+                // Establece la categoría del producto usando el método setCategoriaId().
+
+                $producto->guardar();
+                // Guarda el producto en la base de datos usando el método guardar().
+
+                header('Location: views/lista_productos.php');
+                // Redirige al usuario a la página 'lista_productos.php' en el directorio 'views/'.
+
+                exit;
+                // Finaliza el script para asegurar que no se ejecute ningún código adicional.
+            } else {
+                echo "Error al subir la imagen.";
+                // Si el archivo no se pudo mover, muestra un mensaje de error.
+            }
         }
     } else {
         echo "Error: Datos no proporcionados.";

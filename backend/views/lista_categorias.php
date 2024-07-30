@@ -4,11 +4,25 @@
 // Incluye el archivo de carga automática para cargar clases automáticamente
 include '../../class/autoload.php';
 
+// Verifica si el formulario de búsqueda fue enviado (solicitud GET)
+if (isset($_GET['search'])) {
+    // Asigna el valor de la búsqueda a la variable $search
+    $search = $_GET['search'];
+} else {
+    // Si no se realizó ninguna búsqueda, establece $search como una cadena vacía
+    $search = '';
+}
+
 // Crea una instancia de la clase Categorias
 $categoria = new Categorias();
 
-// Llama al método obtenerTodas() para obtener todas las categorías de la base de datos
-$categorias = $categoria->obtenerTodas();
+// Si hay un término de búsqueda, busca las categorías que coincidan
+if (!empty($search)) {
+    $categorias = $categoria->buscar($search);
+} else {
+    // Si no hay búsqueda, obtiene todas las categorías
+    $categorias = $categoria->obtenerTodas();
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +56,11 @@ $categorias = $categoria->obtenerTodas();
     </a>
     <div class="container">
         <!-- Contenedor principal del contenido -->
+        <form method="GET" action="lista_categorias.php">
+            <input type="text" name="search" placeholder="Buscar categoria">
+            <button type="submit">Buscar</button>
+        </form>
+        <!-- Formulario de busqueda de Categorias -->
         <table>
             <!-- Inicio de la tabla para mostrar las categorías -->
             <thead>

@@ -50,11 +50,18 @@ class Database
         $sql = "INSERT INTO $table ($keys) VALUES ($placeholders)";
         // Construir la consulta SQL de inserción utilizando la tabla, las claves y los marcadores de posición.
 
-        $stmt = $this->pdo->prepare($sql);
-        // Preparar la consulta SQL para su ejecución.
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            // Preparar la consulta SQL para su ejecución.
 
-        $stmt->execute(array_values($data));
-        // Ejecutar la consulta con los valores del array de datos.
+            $stmt->execute(array_values($data));
+            // Ejecutar la consulta con los valores del array de datos.
+        } catch (PDOException $e) {
+            // Capturar cualquier excepción PDO que ocurra durante la ejecución de la consulta.
+
+            throw new PDOException($e->getMessage(), (int)$e->getCode());
+            // Relanzar la excepción con el mensaje y el código de error.
+        }
     }
 
     public function update($table, $data, $where)
@@ -77,11 +84,18 @@ class Database
         $sql = "UPDATE $table SET $fields WHERE $where";
         // Construir la consulta SQL de actualización utilizando la tabla, los campos y la condición WHERE.
 
-        $stmt = $this->pdo->prepare($sql);
-        // Preparar la consulta SQL para su ejecución.
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            // Preparar la consulta SQL para su ejecución.
 
-        $stmt->execute(array_values($data));
-        // Ejecutar la consulta con los valores del array de datos.
+            $stmt->execute(array_values($data));
+            // Ejecutar la consulta con los valores del array de datos.
+        } catch (PDOException $e) {
+            // Capturar cualquier excepción PDO que ocurra durante la ejecución de la consulta.
+
+            throw new PDOException($e->getMessage(), (int)$e->getCode());
+            // Relanzar la excepción con el mensaje y el código de error.
+        }
     }
 
     public function delete($table, $where)
@@ -91,24 +105,38 @@ class Database
         $sql = "DELETE FROM $table WHERE $where";
         // Construir la consulta SQL de eliminación utilizando la tabla y la condición WHERE.
 
-        $stmt = $this->pdo->prepare($sql);
-        // Preparar la consulta SQL para su ejecución.
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            // Preparar la consulta SQL para su ejecución.
 
-        $stmt->execute();
-        // Ejecutar la consulta.
+            $stmt->execute();
+            // Ejecutar la consulta.
+        } catch (PDOException $e) {
+            // Capturar cualquier excepción PDO que ocurra durante la ejecución de la consulta.
+
+            throw new PDOException($e->getMessage(), (int)$e->getCode());
+            // Relanzar la excepción con el mensaje y el código de error.
+        }
     }
 
     public function select($sql, $params = [])
     {
         // Método para seleccionar datos de la base de datos utilizando una consulta SQL.
 
-        $stmt = $this->pdo->prepare($sql);
-        // Preparar la consulta SQL para su ejecución.
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            // Preparar la consulta SQL para su ejecución.
 
-        $stmt->execute($params);
-        // Ejecutar la consulta con los parámetros proporcionados.
+            $stmt->execute($params);
+            // Ejecutar la consulta con los parámetros proporcionados.
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // Obtener todos los resultados de la consulta como un array asociativo y devolverlo.
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // Obtener todos los resultados de la consulta como un array asociativo y devolverlo.
+        } catch (PDOException $e) {
+            // Capturar cualquier excepción PDO que ocurra durante la ejecución de la consulta.
+
+            throw new PDOException($e->getMessage(), (int)$e->getCode());
+            // Relanzar la excepción con el mensaje y el código de error.
+        }
     }
 }

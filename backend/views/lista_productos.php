@@ -3,11 +3,25 @@
 // Incluye el archivo de carga automática para cargar clases automáticamente
 include '../../class/autoload.php';
 
-// Crea una instancia de la clase Productos
+// Verifica si el formulario de búsqueda fue enviado (solicitud GET)
+if (isset($_GET['search'])) {
+    // Asigna el valor de la búsqueda a la variable $search
+    $search = $_GET['search'];
+} else {
+    // Si no se realizó ninguna búsqueda, establece $search como una cadena vacía
+    $search = '';
+}
+
+// Crea una instancia de la clase Categorias
 $producto = new Productos();
 
-// Llama al método obtenerTodos() para obtener todos los productos de la base de datos
-$productos = $producto->obtenerTodos();
+// Si hay un término de búsqueda, busca las categorías que coincidan
+if (!empty($search)) {
+    $productos = $producto->buscar($search);
+} else {
+    // Si no hay búsqueda, obtiene todas las categorías
+    $productos = $producto->obtenerTodos();
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +55,11 @@ $productos = $producto->obtenerTodos();
     </a>
     <div class="container">
         <!-- Contenedor principal del contenido -->
+        <form method="GET" action="lista_productos.php">
+            <input type="text" name="search" placeholder="Buscar producto">
+            <button type="submit">Buscar</button>
+        </form>
+        <!-- Formulario de busqueda de Productos -->
         <table>
             <!-- Inicio de la tabla para mostrar los productos -->
             <thead>
