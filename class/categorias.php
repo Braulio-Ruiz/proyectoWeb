@@ -65,7 +65,7 @@ class Categorias
         // Devuelve el resultado de la consulta.
         return $this->db->select('SELECT * FROM categorias');
     }
-    // Método para buscar categorias por nombre
+    // Método para buscar categorias por nombre.
     public function buscar($term)
     {
         $search = "%{$term}%";
