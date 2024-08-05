@@ -36,7 +36,6 @@ $(document).ready(function () {
             return false;
         }
         // Si no hay errores, permitir el envío del formulario
-        // Si no hay errores, envía el formulario.
         this.submit();
     });
     // Validación del formulario de productos
@@ -86,7 +85,6 @@ $(document).ready(function () {
             return false;
         }
         // Si no hay errores, permitir el envío del formulario
-        // Si no hay errores, envía el formulario.
         this.submit();
     });
     // Confirmación al hacer clic en el botón "Cancelar"
