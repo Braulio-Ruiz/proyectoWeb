@@ -103,7 +103,7 @@ else {
             </tbody>
         </table>
         <!-- Enlace que apunta a 'productos.php' para agregar nuevos productos, con la clase 'nav-link' -->
-        <a href="productos.php" class="nav-link">Agregar nuevos productos</a>
+        <a href="productos.php" class="nav-link">Agregar productos</a>
         <!-- Párrafo con el texto 'Creado por Braulio Ruiz Niñoles' -->
         <p>Creado por Braulio Ruiz Niñoles</p>
     </div>
