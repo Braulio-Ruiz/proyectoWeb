@@ -81,14 +81,17 @@ class Productos
     // Método para obtener todos los productos de la base de datos.
     public function obtenerTodos()
     {
-        // Llama al método 'select' de la clase 'Database' para ejecutar una consulta SQL que obtiene todos los registros de la tabla 'productos' y devuelve el resultado.
-        return $this->db->select('SELECT * FROM productos');
+        $sql = 'SELECT p.*, c.nombre AS categoria_nombre FROM productos p
+                JOIN categorias c ON p.categoria_id = c.id';
+        return $this->db->select($sql);
     }
-    // Método para buscar productos por nombre.
+    // Método para buscar en el listado de productos por nombre.
     public function buscar($term)
     {
         $search = "%{$term}%";
-        $sql = "SELECT * FROM productos WHERE nombre LIKE ?";
+        $sql = "SELECT p.*, c.nombre AS categoria_nombre FROM productos p
+                JOIN categorias c ON p.categoria_id = c.id
+                WHERE p.nombre LIKE ?";
         return $this->db->select($sql, [$search]);
     }
 }

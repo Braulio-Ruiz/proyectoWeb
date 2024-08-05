@@ -96,7 +96,7 @@ else {
                             <img src="../../assets/img/<?php echo $prod['imagen']; ?>" alt="<?php echo $prod['nombre']; ?>" style="width: 100px; height: auto;">
                         </td>
                         <!-- Celda que muestra el ID de la categoría del producto -->
-                        <td><?php echo $prod['categoria_id']; ?></td>
+                        <td><?php echo $prod['categoria_nombre']; ?></td>
                     </tr>
                     <!-- Fin del bucle PHP -->
                 <?php endforeach; ?>

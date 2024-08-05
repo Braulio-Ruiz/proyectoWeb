@@ -75,7 +75,7 @@
                         <!-- Muestra la imagen del producto en una celda de la tabla. El atributo src construye la ruta de la imagen, y el atributo alt proporciona texto alternativo -->
                         <td><img src="assets/img/<?php echo $prod['imagen']; ?>" alt="<?php echo $prod['nombre']; ?>" style="width: 100px; height: auto;"></td>
                         <!-- Muestra el ID de la categoría del producto en una celda de la tabla -->
-                        <td><?php echo $prod['categoria_id']; ?></td>
+                        <td><?php echo $prod['categoria_nombre']; ?></td>
                     </tr>
                     <!-- Cierra el bucle PHP -->
                 <?php endforeach; ?>
