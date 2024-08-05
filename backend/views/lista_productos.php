@@ -55,7 +55,7 @@ else {
         <!-- Formulario de busqueda de Productos -->
         <form method="GET" action="lista_productos.php">
             <input type="text" name="search" placeholder="Buscar producto">
-            <button type="submit">Buscar</button>
+            <button class="search" type="submit">Buscar</button>
         </form>
         <!-- Inicio de la tabla para mostrar los productos -->
         <table>

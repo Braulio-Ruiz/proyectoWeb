@@ -42,7 +42,7 @@ h1 {
 .container {
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px #0000001a;
     margin: 40px auto;
     padding: 50px;
     width: 80%;
@@ -68,6 +68,7 @@ input {
 }
 
 button {
+    display: inline-block;
     background-color: #007BFF;
     border: none;
     border-radius: 8px;
@@ -79,8 +80,12 @@ button {
     transition: 0.3s;
 }
 
-button:hover {
-    background-color: rgb(2, 195, 2);
+button[type="submit"]:hover {
+    background-color: #02c302;
+}
+
+button[class="search"]:hover {
+    background-color: #00b7ff;
 }
 
 button[type="reset"] {
@@ -89,11 +94,7 @@ button[type="reset"] {
 }
 
 button[type="reset"]:hover {
-    background-color: rgb(227, 0, 0);
-}
-
-button[type="submit"]:hover {
-    background-color: #00b7ff;
+    background-color: #e30000;
 }
 
 p {
@@ -151,6 +152,6 @@ table tr:hover {
 
 input.error,
 textarea.error {
-    border: 1px solid rgb(223, 1, 1);
+    border: 1px solid #df0101;
     background-color: #fdd;
 }

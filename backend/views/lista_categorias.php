@@ -55,7 +55,7 @@ else {
         <!-- Formulario de busqueda de Categorias -->
         <form method="GET" action="lista_categorias.php">
             <input type="text" name="search" placeholder="Buscar categoria">
-            <button type="submit">Buscar</button>
+            <button class="search" type="submit">Buscar</button>
         </form>
         <!-- Inicio de la tabla para mostrar las categorías -->
         <table>
