@@ -112,7 +112,7 @@ p {
     color: #4b4b4b;
     font-size: 15px;
     text-align: center;
-    padding: 20px;
+    margin-top: 30px;
 }
 
 .navigation {
@@ -164,5 +164,5 @@ table tr:hover {
 input.error,
 textarea.error {
     border: 1px solid #df0101;
-    background-color: #fdd;
+    background-color: #f8b6b6;
 }

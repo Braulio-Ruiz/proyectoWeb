@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                     <!-- Celda del encabezado para la columna de Nombre -->
                     <th>Nombre</th>
                     <!-- Celda del encabezado para la columna de Acciones -->
-                    <th>Acciones</th>
+                    <th></th>
                 </tr>
             </thead>
             <!-- Cuerpo de la tabla -->
