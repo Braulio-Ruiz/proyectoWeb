@@ -34,9 +34,9 @@
         <!-- Define una segunda sección de navegación con la clase CSS "navigation" -->
         <div class="navigation">
             <!-- Enlace a la página de listado de categorías con la clase CSS "nav-link" -->
-            <a href="backend/views/lista_categorias.php" class="nav-link">Lista de Categorías</a>
+            <a href="backend/views/lista_categorias.php" class="nav-link">Listado de Categorías</a>
             <!-- Enlace a la página de listado de productos con la clase CSS "nav-link" -->
-            <a href="backend/views/lista_productos.php" class="nav-link">Lista de Productos</a>
+            <a href="backend/views/lista_productos.php" class="nav-link">Listado de Productos</a>
         </div>
         <!-- Define una tabla para mostrar datos -->
         <table>
