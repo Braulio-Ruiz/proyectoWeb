@@ -40,11 +40,12 @@ h1 {
 }
 
 .container {
+    display: inline-table;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 20px #0000001a;
     margin: 40px auto;
-    padding: 50px;
+    padding: 40px;
     width: 80%;
     max-width: 600px;
 }
@@ -68,7 +69,6 @@ input {
 }
 
 button {
-    display: inline-block;
     background-color: #007BFF;
     border: none;
     border-radius: 8px;
@@ -86,6 +86,17 @@ button[type="submit"]:hover {
 
 button[class="search"]:hover {
     background-color: #00b7ff;
+}
+
+button[class="delete"] {
+    background-color: #c7c6c6;
+    max-width: 100px;
+    margin: 10px;
+    align-self: center;
+}
+
+button[class="delete"]:hover {
+    background-color: #e30000;
 }
 
 button[type="reset"] {

@@ -24,6 +24,16 @@ if (!empty($search)) {
 else {
     $categorias = $categoria->obtenerTodas();
 }
+
+// Verifica si el formulario de eliminación fue enviado (solicitud POST)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
+    $categoria_id = $_POST['id'];
+    $categoria = new Categorias();
+    $categoria->setId($categoria_id);
+    $categoria->eliminar();
+    header('Location: lista_categorias.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -67,6 +77,8 @@ else {
                     <th>ID</th>
                     <!-- Celda del encabezado para la columna de Nombre -->
                     <th>Nombre</th>
+                    <!-- Celda del encabezado para la columna de Acciones -->
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <!-- Cuerpo de la tabla -->
@@ -79,6 +91,13 @@ else {
                         <td><?php echo $cat['id']; ?></td>
                         <!-- Celda que muestra el nombre de la categoría -->
                         <td><?php echo $cat['nombre']; ?></td>
+                        <!-- Celda que muestra el boton "Eliminar" -->
+                        <td>
+                            <form method="POST" action="lista_categorias.php">
+                                <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
+                                <button class="delete" type="submit" name="delete">Eliminar</button>
+                            </form>
+                        </td>
                     </tr>
                     <!-- Fin del bucle PHP -->
                 <?php endforeach; ?>

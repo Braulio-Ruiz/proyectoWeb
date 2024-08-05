@@ -24,6 +24,16 @@ if (!empty($search)) {
 else {
     $productos = $producto->obtenerTodos();
 }
+
+// Verifica si el formulario de eliminación fue enviado (solicitud POST)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
+    $producto_id = $_POST['id'];
+    $producto = new Productos();
+    $producto->setId($producto_id);
+    $producto->eliminar();
+    header('Location: lista_productos.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -75,6 +85,8 @@ else {
                     <th>Imagen</th>
                     <!-- Celda del encabezado para la columna de Categoría -->
                     <th>Categoría</th>
+                    <!-- Celda del encabezado para la columna de Acciones -->
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <!-- Cuerpo de la tabla -->
@@ -97,6 +109,13 @@ else {
                         </td>
                         <!-- Celda que muestra el ID de la categoría del producto -->
                         <td><?php echo $prod['categoria_nombre']; ?></td>
+                        <!-- Celda que muestra el boton "Eliminar" -->
+                        <td>
+                            <form method="POST" action="lista_productos.php">
+                                <input type="hidden" name="id" value="<?php echo $prod['id']; ?>">
+                                <button class="delete" type="submit" name="delete">Eliminar</button>
+                            </form>
+                        </td>
                     </tr>
                     <!-- Fin del bucle PHP -->
                 <?php endforeach; ?>
