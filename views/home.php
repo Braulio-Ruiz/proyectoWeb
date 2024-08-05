@@ -1,103 +1,91 @@
 <!DOCTYPE html>
-<!-- Define el tipo de documento como HTML5 -->
 <html lang="en">
-<!-- Comienza el documento HTML y establece el idioma en inglés -->
 
 <head>
-    <!-- Define la cabecera del documento -->
     <meta charset="UTF-8">
-    <!-- Especifica la codificación de caracteres del documento como UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Establece la metaetiqueta de la ventana gráfica para controlar el diseño en navegadores móviles -->
-    <title>..:: SiberOs ::..</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Define el título de la página que aparecerá en la pestaña del navegador -->
-    <link rel="stylesheet" href="assets/css/estilos.css">
+    <title>..:: SiberOs ::..</title>
     <!-- Enlaza el archivo de hoja de estilos CSS externo para aplicar estilos a la página -->
+    <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 
 <body>
-    <!-- Comienza el cuerpo del documento HTML -->
+    <!-- Crea un enlace que apunta a index.php -->
     <a href="index.php">
-        <!-- Crea un enlace que apunta a index.php -->
+        <!-- Define el encabezado de la página -->
         <header>
-            <!-- Define el encabezado de la página -->
-            <img src="assets/img/logo.png" alt="Logo de la Empresa" class="logo">
             <!-- Muestra el logo de la empresa. El atributo src indica la ubicación de la imagen, alt proporciona texto alternativo para accesibilidad, y class define la clase CSS -->
-            <h1>Bienvenidos a SiberOs</h1>
+            <img src="assets/img/logo.png" alt="Logo de la Empresa" class="logo">
             <!-- Muestra un encabezado de nivel 1 con el texto "Bienvenidos a SiberOs" -->
+            <h1>Bienvenidos a SiberOs</h1>
         </header>
     </a>
-    <!-- Cierra el enlace, haciendo que el encabezado sea un enlace clicable -->
+    <!-- Define un contenedor principal con la clase CSS "container" -->
     <div class="container">
-        <!-- Define un contenedor principal con la clase CSS "container" -->
+        <!-- Define una sección de navegación con la clase CSS "navigation" -->
         <div class="navigation">
-            <!-- Define una sección de navegación con la clase CSS "navigation" -->
-            <a href="backend/views/categorias.html" class="nav-link">Categorías</a>
             <!-- Enlace a la página de categorías con la clase CSS "nav-link" -->
-            <a href="backend/views/productos.php" class="nav-link">Productos</a>
+            <a href="backend/views/categorias.html" class="nav-link">Categorías</a>
             <!-- Enlace a la página de productos con la clase CSS "nav-link" -->
+            <a href="backend/views/productos.php" class="nav-link">Productos</a>
         </div>
-        <!-- Cierra la primera sección de navegación -->
+        <!-- Define una segunda sección de navegación con la clase CSS "navigation" -->
         <div class="navigation">
-            <!-- Define una segunda sección de navegación con la clase CSS "navigation" -->
-            <a href="backend/views/lista_categorias.php" class="nav-link">Listado de Categorías</a>
             <!-- Enlace a la página de listado de categorías con la clase CSS "nav-link" -->
-            <a href="backend/views/lista_productos.php" class="nav-link">Listado de Productos</a>
+            <a href="backend/views/lista_categorias.php" class="nav-link">Listado de Categorías</a>
             <!-- Enlace a la página de listado de productos con la clase CSS "nav-link" -->
+            <a href="backend/views/lista_productos.php" class="nav-link">Listado de Productos</a>
         </div>
-        <!-- Cierra la segunda sección de navegación -->
+        <!-- Define una tabla para mostrar datos -->
         <table>
-            <!-- Define una tabla para mostrar datos -->
+            <!-- Define el encabezado de la tabla -->
             <thead>
-                <!-- Define el encabezado de la tabla -->
+                <!-- Define una fila en el encabezado de la tabla -->
                 <tr>
-                    <!-- Define una fila en el encabezado de la tabla -->
-                    <th>ID</th>
                     <!-- Encabezado de columna para ID -->
-                    <th>Nombre</th>
+                    <th>ID</th>
                     <!-- Encabezado de columna para Nombre -->
-                    <th>Descripción</th>
+                    <th>Nombre</th>
                     <!-- Encabezado de columna para Descripción -->
-                    <th>Precio</th>
+                    <th>Descripción</th>
                     <!-- Encabezado de columna para Precio -->
-                    <th>Imagen</th>
+                    <th>Precio</th>
                     <!-- Encabezado de columna para Imagen -->
-                    <th>Categoría</th>
+                    <th>Imagen</th>
                     <!-- Encabezado de columna para Categoría -->
+                    <th>Categoría</th>
                 </tr>
             </thead>
+            <!-- Define el cuerpo de la tabla -->
             <tbody>
-                <!-- Define el cuerpo de la tabla -->
+                <!-- Inicia un bucle PHP para iterar sobre cada producto en la variable $productos -->
                 <?php foreach ($productos as $prod) : ?>
-                    <!-- Inicia un bucle PHP para iterar sobre cada producto en la variable $productos -->
+                    <!-- Define una fila de la tabla para cada producto -->
                     <tr>
-                        <!-- Define una fila de la tabla para cada producto -->
-                        <td><?php echo $prod['id']; ?></td>
                         <!-- Muestra el ID del producto en una celda de la tabla -->
-                        <td><?php echo $prod['nombre']; ?></td>
+                        <td><?php echo $prod['id']; ?></td>
                         <!-- Muestra el nombre del producto en una celda de la tabla -->
-                        <td><?php echo $prod['descripcion']; ?></td>
+                        <td><?php echo $prod['nombre']; ?></td>
                         <!-- Muestra la descripción del producto en una celda de la tabla -->
-                        <td><?php echo '$', number_format($prod['precio'], 0, ',', '.'); ?></td>
+                        <td><?php echo $prod['descripcion']; ?></td>
                         <!-- Muestra el precio del producto formateado en una celda de la tabla -->
-                        <td><img src="assets/img/<?php echo $prod['imagen']; ?>" alt="<?php echo $prod['nombre']; ?>" style="width: 100px; height: auto;"></td>
+                        <td><?php echo '$', number_format($prod['precio'], 0, ',', '.'); ?></td>
                         <!-- Muestra la imagen del producto en una celda de la tabla. El atributo src construye la ruta de la imagen, y el atributo alt proporciona texto alternativo -->
-                        <td><?php echo $prod['categoria_id']; ?></td>
+                        <td><img src="assets/img/<?php echo $prod['imagen']; ?>" alt="<?php echo $prod['nombre']; ?>" style="width: 100px; height: auto;"></td>
                         <!-- Muestra el ID de la categoría del producto en una celda de la tabla -->
+                        <td><?php echo $prod['categoria_id']; ?></td>
                     </tr>
+                    <!-- Cierra el bucle PHP -->
                 <?php endforeach; ?>
-                <!-- Cierra el bucle PHP -->
             </tbody>
         </table>
-        <!-- Cierra la tabla -->
-        <p>Creado por Braulio Ruiz Niñoles</p>
         <!-- Muestra el texto "Creado por Braulio Ruiz Niñoles" -->
+        <p>Creado por Braulio Ruiz Niñoles</p>
     </div>
-    <!-- Cierra el contenedor principal -->
-    <script src="assets/js/main.js"></script>
     <!-- Enlaza el archivo JavaScript externo para añadir funcionalidad a la página -->
+    <script src="assets/js/main.js"></script>
 </body>
-<!-- Cierra el cuerpo del documento HTML -->
 
 </html>
-<!-- Cierra el documento HTML -->
