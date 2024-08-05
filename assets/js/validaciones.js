@@ -31,7 +31,7 @@ $(document).ready(function () {
         // Mostrar errores si existen
         // Si hay errores, muestra una alerta con los nombres de los campos vacíos.
         if (errores.length > 0) {
-            alert("Completar los siguientes campos: " + errores.join(", ") + "." + '\n\nCreado por Braulio Ruiz Niñoles');
+            alert("Completar los siguientes campos: " + errores.join(", ") + ".");
             // Detiene el envío del formulario.
             return false;
         }
@@ -81,7 +81,7 @@ $(document).ready(function () {
         // Mostrar errores si existen
         // Si hay errores, muestra una alerta con los nombres de los campos vacíos.
         if (errores.length > 0) {
-            alert("Completar los siguientes campos: " + errores.join(", ") + "." + '\n\nCreado por Braulio Ruiz Niñoles');
+            alert("Completar los siguientes campos: " + errores.join(", ") + ".");
             // Detiene el envío del formulario.
             return false;
         }
@@ -95,7 +95,7 @@ $(document).ready(function () {
         // Evita el comportamiento predeterminado del botón de cancelar.
         event.preventDefault();
         // Muestra un cuadro de diálogo de confirmación y, si el usuario confirma, ejecuta el siguiente bloque de código.
-        if (confirm('¿Estás seguro de que quieres cancelar?' + '\n\nCreado por Braulio Ruiz Niñoles')) {
+        if (confirm('¿Estás seguro de que quieres cancelar?')) {
             // Redirige al usuario a la página 'index.php' en el directorio principal.
             window.location.href = '../../index.php';
         }
