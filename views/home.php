@@ -27,9 +27,9 @@
         <!-- Define una sección de navegación con la clase CSS "navigation" -->
         <div class="navigation">
             <!-- Enlace a la página de categorías con la clase CSS "nav-link" -->
-            <a href="backend/views/categorias.html" class="nav-link">Agregar categorías</a>
+            <a href="backend/views/categorias.html" class="nav-link">Agregar Categorías</a>
             <!-- Enlace a la página de productos con la clase CSS "nav-link" -->
-            <a href="backend/views/productos.php" class="nav-link">Agregar productos</a>
+            <a href="backend/views/productos.php" class="nav-link">Agregar Productos</a>
         </div>
         <!-- Define una segunda sección de navegación con la clase CSS "navigation" -->
         <div class="navigation">

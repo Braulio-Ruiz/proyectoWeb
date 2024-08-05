@@ -85,7 +85,7 @@ else {
             </tbody>
         </table>
         <!-- Enlace que apunta a 'categorias.html' para agregar nuevas categorías, con la clase 'nav-link' -->
-        <a href="categorias.html" class="nav-link">Agregar categorías</a>
+        <a href="categorias.html" class="nav-link">Agregar Categorías</a>
         <!-- Párrafo con el texto 'Creado por Braulio Ruiz Niñoles' -->
         <p>Creado por Braulio Ruiz Niñoles</p>
     </div>
