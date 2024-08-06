@@ -61,20 +61,13 @@ class Categorias
     // Método para obtener todas las categorías de la base de datos.
     public function obtenerTodas()
     {
-        // Define una consulta SQL para seleccionar todos los campos de la tabla 'productos' (alias 'p')
-        // y el nombre de la categoría correspondiente de la tabla 'categorias' (alias 'c')
-        $sql = 'SELECT p.*, c.nombre AS categoria_nombre FROM productos p
-            JOIN categorias c ON p.categoria_id = c.id';
-        // Ejecuta la consulta SQL utilizando el método 'select' de la clase 'Database'
-        // y devuelve los resultados obtenidos
-        return $this->db->select($sql);
+        // Llama al método 'select' de la clase 'Database' para obtener todas las filas de la tabla 'categorias'.
+        // Devuelve el resultado de la consulta.
+        return $this->db->select('SELECT * FROM categorias');
     }
-    // Método para realizar busqueda de categorias en la base de datos.
+    // Método para buscar en el listado de categorias por nombre.
     public function buscar($term)
     {
-        // Utiliza el término de búsqueda proporcionado como parámetro y lo envuelve en porcentajes
-        // para usarlo en la cláusula LIKE de SQL. Esto permitirá buscar coincidencias parciales
-        // al inicio, medio o final del nombre del producto.
         $search = "%{$term}%";
         // Define una consulta SQL para seleccionar todos los campos de la tabla 'productos' (alias 'p')
         // y el nombre de la categoría correspondiente de la tabla 'categorias' (alias 'c').
