@@ -81,17 +81,31 @@ class Productos
     // Método para obtener todos los productos de la base de datos.
     public function obtenerTodos()
     {
+        // Define una consulta SQL para seleccionar todos los campos (*) de la tabla 'productos' (alias 'p')
+        // y el campo 'nombre' de la tabla 'categorias' (alias 'c'), renombrándolo como 'categoria_nombre'.
+        // La consulta realiza una unión interna (JOIN) entre la tabla 'productos' y la tabla 'categorias'
+        // en base al campo 'categoria_id' de la tabla 'productos' y el campo 'id' de la tabla 'categorias'.
         $sql = 'SELECT p.*, c.nombre AS categoria_nombre FROM productos p
                 JOIN categorias c ON p.categoria_id = c.id';
+        // Ejecuta la consulta SQL utilizando el método 'select' de la clase 'Database' y devuelve los resultados.
         return $this->db->select($sql);
     }
-    // Método para buscar en el listado de productos por nombre.
+    // Método para realizar busqueda de productos en la base de datos.
     public function buscar($term)
     {
+        // Prepara el término de búsqueda envolviéndolo en comodines (%) para que pueda coincidir con cualquier parte del nombre del producto.
         $search = "%{$term}%";
+        // Define una consulta SQL para seleccionar todos los campos (*) de la tabla 'productos' (alias 'p')
+        // y el campo 'nombre' de la tabla 'categorias' (alias 'c'), renombrándolo como 'categoria_nombre'.
+        // La consulta realiza una unión interna (JOIN) entre la tabla 'productos' y la tabla 'categorias'
+        // en base al campo 'categoria_id' de la tabla 'productos' y el campo 'id' de la tabla 'categorias'.
+        // Además, filtra los resultados donde el campo 'nombre' de la tabla 'productos' coincida con el término de búsqueda.
         $sql = "SELECT p.*, c.nombre AS categoria_nombre FROM productos p
                 JOIN categorias c ON p.categoria_id = c.id
                 WHERE p.nombre LIKE ?";
+        // Ejecuta la consulta SQL utilizando el método 'select' de la clase 'Database',
+        // pasando el término de búsqueda como parámetro para evitar inyecciones SQL,
+        // y devuelve los resultados obtenidos.
         return $this->db->select($sql, [$search]);
     }
 }

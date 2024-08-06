@@ -25,13 +25,20 @@ else {
     $productos = $producto->obtenerTodos();
 }
 
-// Verifica si el formulario de eliminación fue enviado (solicitud POST)
+// Verifica si la solicitud HTTP es de tipo POST y si el campo 'delete' está presente en la solicitud.
+// Esto indica que se ha enviado un formulario de eliminación.
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
+    // Obtiene el valor del campo 'id' del formulario enviado y lo asigna a la variable $producto_id.
     $producto_id = $_POST['id'];
+    // Crea una nueva instancia de la clase 'Productos'.
     $producto = new Productos();
+    // Establece el ID del producto a eliminar utilizando el método 'setId' de la clase 'Productos'.
     $producto->setId($producto_id);
+    // Llama al método 'eliminar' de la clase 'Productos' para eliminar el producto de la base de datos.
     $producto->eliminar();
+    // Redirige al usuario a la página 'lista_productos.php' después de eliminar el producto.
     header('Location: lista_productos.php');
+    // Finaliza el script para asegurarse de que no se ejecute ningún código adicional después de la redirección.
     exit;
 }
 ?>
