@@ -1,12 +1,9 @@
 <?php
-// Incluye el archivo de carga automática para cargar clases automáticamente
-include '../../class/autoload.php';
+// Incluye el archivo controlador /backend/categorias.php.
+include '../productos.php';
 
-// Crea una instancia de la clase Categorias
-$categoria = new Categorias();
-
-// Llama al método obtenerTodas() para obtener todas las categorías de la base de datos
-$categorias = $categoria->obtenerTodas();
+// Incluye el archivo controlador /backend/categorias.php.
+include '../categorias.php';
 ?>
 
 <!DOCTYPE html>

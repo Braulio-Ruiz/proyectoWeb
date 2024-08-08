@@ -1,45 +1,6 @@
 <?php
-// Incluye el archivo de carga automática para cargar clases automáticamente
-include '../../class/autoload.php';
-
-// Verifica si el formulario de búsqueda fue enviado (solicitud GET)
-if (isset($_GET['search'])) {
-    // Asigna el valor de la búsqueda a la variable $search
-    $search = $_GET['search'];
-}
-// Si no se realizó ninguna búsqueda, establece $search como una cadena vacía
-else {
-    $search = '';
-}
-
-// Crea una instancia de la clase Categorias
-$categoria = new Categorias();
-
-// Si hay un término de búsqueda, busca las categorías que coincidan
-if (!empty($search)) {
-    $categorias = $categoria->buscar($search);
-}
-// Si no hay búsqueda, obtiene todas las categorías
-else {
-    $categorias = $categoria->obtenerTodas();
-}
-
-// Verifica si la solicitud HTTP es de tipo POST y si el campo 'delete' está presente en la solicitud.
-// Esto indica que se ha enviado un formulario de eliminación.
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
-    // Obtiene el valor del campo 'id' del formulario enviado y lo asigna a la variable $categoria_id.
-    $categoria_id = $_POST['id'];
-    // Crea una nueva instancia de la clase 'Categorias'.
-    $categoria = new Categorias();
-    // Establece el ID de la categoría a eliminar utilizando el método 'setId' de la clase 'Categorias'.
-    $categoria->setId($categoria_id);
-    // Llama al método 'eliminar' de la clase 'Categorias' para eliminar la categoría de la base de datos.
-    $categoria->eliminar();
-    // Redirige al usuario a la página 'lista_categorias.php' después de eliminar la categoría.
-    header('Location: lista_categorias.php');
-    // Finaliza el script para asegurarse de que no se ejecute ningún código adicional después de la redirección.
-    exit;
-}
+// Incluye el archivo controlador /backend/categorias.php.
+include '../categorias.php';
 ?>
 
 <!DOCTYPE html>

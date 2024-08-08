@@ -64,16 +64,12 @@ class Categorias
         // Devuelve el resultado de la consulta.
         return $this->db->select('SELECT * FROM categorias');
     }
-    // Método para buscar en el listado de categorias por nombre.
+    // Método para buscar en el listado de categorías por nombre.
     public function buscar($term)
     {
         $search = "%{$term}%";
-        // Define una consulta SQL para seleccionar todos los campos de la tabla 'productos' (alias 'p')
-        // y el nombre de la categoría correspondiente de la tabla 'categorias' (alias 'c').
-        // La cláusula WHERE busca productos cuyo nombre contenga el término de búsqueda.
-        $sql = "SELECT p.*, c.nombre AS categoria_nombre FROM productos p
-            JOIN categorias c ON p.categoria_id = c.id
-            WHERE p.nombre LIKE ?";
+        // Realiza la búsqueda en la tabla 'categorias' basándose en el nombre de la categoría.
+        $sql = "SELECT * FROM categorias WHERE nombre LIKE ?";
         // Ejecuta la consulta SQL utilizando el método 'select' de la clase 'Database',
         // pasando el término de búsqueda como un parámetro para evitar inyecciones SQL,
         // y devuelve los resultados obtenidos.

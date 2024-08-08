@@ -1,9 +1,6 @@
 <?php
-// Crea una instancia de la clase Categorias
-$producto = new Productos();
-
-// Obtiene todas las categorías
-$productos = $producto->obtenerTodos();
+// Incluye el archivo controlador /backend/productos.php.
+include 'backend/productos.php';
 ?>
 
 <!DOCTYPE html>
