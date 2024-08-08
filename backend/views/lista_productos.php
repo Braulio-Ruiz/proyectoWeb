@@ -1,5 +1,4 @@
 <?php
-
 // Incluye el archivo de carga automática para cargar clases automáticamente
 include '../../class/autoload.php';
 

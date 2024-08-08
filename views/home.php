@@ -1,3 +1,11 @@
+<?php
+// Crea una instancia de la clase Categorias
+$producto = new Productos();
+
+// Obtiene todas las categorías
+$productos = $producto->obtenerTodos();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

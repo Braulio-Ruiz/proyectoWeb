@@ -1,5 +1,4 @@
 <?php
-
 // Registra una función de autoloading para clases utilizando spl_autoload_register
 // Esta función será llamada automáticamente siempre que se intente utilizar una clase que no ha sido definida todavía
 // La función de autoload toma el nombre de la clase que se está intentando utilizar ($class_name)

@@ -1,5 +1,4 @@
 <?php
-
 // Incluye el archivo 'autoload.php' que se encuentra en el directorio '../class/' para cargar automáticamente las clases necesarias.
 include '../class/autoload.php';
 
