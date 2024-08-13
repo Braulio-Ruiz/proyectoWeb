@@ -1,10 +1,14 @@
 <?php
-// Registra una función de autoloading para clases utilizando spl_autoload_register
-// Esta función será llamada automáticamente siempre que se intente utilizar una clase que no ha sido definida todavía
-// La función de autoload toma el nombre de la clase que se está intentando utilizar ($class_name)
+
+// Registrar la función de autoload para cargar clases automáticamente.
 spl_autoload_register(function ($class_name) {
-    // Incluye el archivo que contiene la definición de la clase
-    // Esto significa que si se intenta usar una clase llamada 'Producto',
-    // PHP intentará incluir un archivo llamado 'Producto.php'
-    include $class_name . '.php';
+    // Generar la ruta del archivo de clase basada en el nombre de la clase.
+    $file = __DIR__ . '/' . $class_name . '.php';
+    // Verificar si el archivo existe antes de incluirlo.
+    if (file_exists($file)) {
+        include $file;
+    } else {
+        // Manejar la excepción si el archivo no se encuentra.
+        throw new Exception("Unable to load class: $class_name");
+    }
 });

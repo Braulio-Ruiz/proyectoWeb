@@ -1,100 +1,65 @@
-/* Validaciones para los formularios de categorías y productos */
-
-// Esta función se ejecuta cuando el documento HTML está completamente cargado y listo.
+// Espera a que el documento esté completamente cargado antes de ejecutar el código
 $(document).ready(function () {
-    // Validación en tiempo real del formulario
-    $("#formCategorias input, #formProductos input").on('keyup blur', function () {
-        var $this = $(this);
-        if ($this.val().trim() === "") {
-            // Añadir clase de error al campo vacío
-            $this.addClass('error');
+
+    // Define una función para validar los campos del formulario
+    function validarCampos(campos) {
+        var errores = []; // Crea un array para almacenar los nombres de los campos con errores
+        // Itera sobre cada campo pasado a la función
+        campos.each(function () {
+            var $this = $(this); // Convierte el elemento actual en un objeto jQuery
+            if ($this.val().trim() === "") { // Verifica si el valor del campo está vacío después de eliminar espacios en blanco
+                $this.addClass('error'); // Agrega la clase 'error' al campo para indicar un error
+                // Agrega el nombre del campo (con formato mejorado) al array de errores
+                errores.push(
+                    $this.attr('name') // Obtiene el valor del atributo 'name' del campo
+                        .replace(/_/g, ' ') // Reemplaza los guiones bajos con espacios
+                        .replace(/\b\w/g, l => l.toUpperCase()) // Capitaliza la primera letra de cada palabra
+                );
+            } else {
+                $this.removeClass('error'); // Elimina la clase 'error' si el campo no está vacío
+            }
+        });
+        // Devuelve el array de errores
+        return errores;
+    }
+    // Maneja los eventos 'keyup' y 'blur' en los campos de entrada dentro de los formularios especificados
+    $("#formCategorias, #formProductos").on('keyup blur', 'input', function () {
+        var $this = $(this); // Convierte el campo de entrada actual en un objeto jQuery
+        if ($this.val().trim() === "") { // Verifica si el campo está vacío después de eliminar espacios en blanco
+            $this.addClass('error'); // Agrega la clase 'error' al campo
         } else {
-            // Eliminar clase de error si el campo no está vacío
-            $this.removeClass('error');
+            $this.removeClass('error'); // Elimina la clase 'error' si el campo no está vacío
         }
     });
-    // Validación del formulario de categorías
-    // Esta función se ejecuta cuando el formulario con id "formCategorias" se envía.
+    // Maneja el evento 'submit' del formulario con id 'formCategorias'
     $("#formCategorias").submit(function (event) {
-        // Evita el comportamiento predeterminado del formulario de enviar datos al servidor.
-        event.preventDefault();
-        // Obtener los valores de los campos
-        // Obtiene el valor del campo con id "nombreCategoria" y elimina los espacios en blanco de ambos extremos.
-        var nombreCategoria = $("#nombreCategoria").val().trim();
-        // Verificar si los campos están vacíos
-        // Crea un array vacío para almacenar los nombres de los campos que están vacíos.
-        var errores = [];
-        // Si el campo "nombreCategoria" está vacío, añade un mensaje de error al array.
-        if (nombreCategoria === "") {
-            errores.push("Nombre de la Categoría");
+        event.preventDefault(); // Previene el comportamiento por defecto del formulario (enviar la solicitud)
+        var campos = $("#nombreCategoria")
+        var errores = validarCampos(campos); // Llama a la función de validación para el campo 'nombreCategoria'
+        if (errores.length > 0) { // Verifica si hay errores
+            alert("Completar los siguientes campos: " + errores.join(", ") + "."); // Muestra una alerta con los campos faltantes
+            return false; // Previene el envío del formulario
         }
-        // Mostrar errores si existen
-        // Si hay errores, muestra una alerta con los nombres de los campos vacíos.
-        if (errores.length > 0) {
-            alert("Completar los siguientes campos: " + errores.join(", ") + ".");
-            // Detiene el envío del formulario.
-            return false;
-        }
-        // Si no hay errores, permitir el envío del formulario
-        this.submit();
+        this.submit(); // Envía el formulario si no hay errores
     });
-    // Validación del formulario de productos
-    // Esta función se ejecuta cuando el formulario con id "formProductos" se envía.
+    // Maneja el evento 'submit' del formulario con id 'formProductos'
     $("#formProductos").submit(function (event) {
-        // Evita el comportamiento predeterminado del formulario de enviar datos al servidor.
-        event.preventDefault();
-        // Obtener los valores de los campos
-        // Obtiene el valor del campo con id "nombreProducto" y elimina los espacios en blanco de ambos extremos.
-        var nombreProducto = $("#nombreProducto").val().trim();
-        // Obtiene el valor del campo con id "descripcionProducto" y elimina los espacios en blanco de ambos extremos.
-        var descripcionProducto = $("#descripcionProducto").val().trim();
-        // Obtiene el valor del campo con id "imagenProducto" y elimina los espacios en blanco de ambos extremos.
-        var imagenProducto = $("#imagenProducto").val().trim();
-        // Obtiene el valor del campo con id "precioProducto" y elimina los espacios en blanco de ambos extremos.
-        var precioProducto = $("#precioProducto").val().trim();
-        // Obtiene el valor del campo con id "categoriaProducto" y elimina los espacios en blanco de ambos extremos.
-        var categoriaProducto = $("#categoriaProducto").val().trim();
-        // Verificar si los campos están vacíos
-        // Crea un array vacío para almacenar los nombres de los campos que están vacíos.
-        var errores = [];
-        // Si el campo "nombreProducto" está vacío, añade un mensaje de error al array.
-        if (nombreProducto === "") {
-            errores.push("Nombre del Producto");
+        event.preventDefault(); // Previene el comportamiento por defecto del formulario (enviar la solicitud)
+        // Selecciona todos los campos del formulario que deben ser validados
+        var campos = $("#nombreProducto, #descripcionProducto, #imagenProducto, #precioProducto, #categoriaProducto");
+        var errores = validarCampos(campos); // Llama a la función de validación para los campos seleccionados
+        if (errores.length > 0) { // Verifica si hay errores
+            alert("Completar los siguientes campos: " + errores.join(", ") + "."); // Muestra una alerta con los campos faltantes
+            return false; // Previene el envío del formulario
         }
-        // Si el campo "descripcionProducto" está vacío, añade un mensaje de error al array.
-        if (descripcionProducto === "") {
-            errores.push("Descripción del Producto");
-        }
-        // Si el campo "imagenProducto" está vacío, añade un mensaje de error al array.
-        if (imagenProducto === "") {
-            errores.push("Imagen del Producto");
-        }
-        // Si el campo "precioProducto" está vacío, añade un mensaje de error al array.
-        if (precioProducto === "") {
-            errores.push("Precio del Producto");
-        }
-        // Si el campo "categoriaProducto" está vacío, añade un mensaje de error al array.
-        if (categoriaProducto === "") {
-            errores.push("Categoría del Producto");
-        }
-        // Mostrar errores si existen
-        // Si hay errores, muestra una alerta con los nombres de los campos vacíos.
-        if (errores.length > 0) {
-            alert("Completar los siguientes campos: " + errores.join(", ") + ".");
-            // Detiene el envío del formulario.
-            return false;
-        }
-        // Si no hay errores, permitir el envío del formulario
-        this.submit();
+        this.submit(); // Envía el formulario si no hay errores
     });
-    // Confirmación al hacer clic en el botón "Cancelar"
-    // Esta función se ejecuta cuando se hace clic en un elemento con la clase "btn-cancelar".
+    // Maneja el evento 'click' en el botón con clase 'btn-cancelar'
     $('.btn-cancelar').on('click', function (event) {
-        // Evita el comportamiento predeterminado del botón de cancelar.
-        event.preventDefault();
-        // Muestra un cuadro de diálogo de confirmación y, si el usuario confirma, ejecuta el siguiente bloque de código.
+        event.preventDefault(); // Previene el comportamiento por defecto del botón (enviar una solicitud o seguir un enlace)
+        // Muestra un cuadro de confirmación al usuario
         if (confirm('¿Estás seguro de que quieres cancelar?')) {
-            // Redirige al usuario a la página 'index.php' en el directorio principal.
+            // Redirige al usuario a la página principal si confirma la acción
             window.location.href = '../../index.php';
         }
     });
