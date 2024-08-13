@@ -57,11 +57,11 @@ include '../categorias.php';
             <!-- Campo de selección de la categoría del producto, con identificación 'categoriaProducto' y nombre 'categoria_id' -->
             <select id="categoriaProducto" name="categoria_id">
                 <!-- Bucle PHP para recorrer cada categoría y crear una opción en el campo de selección -->
-                <?php foreach ($categorias as $categoria) : ?>
+                <?php foreach ($categorias as $cat) : ?>
                     <!-- Opción del campo de selección con el valor del ID de la categoría -->
-                    <option value="<?php echo $categoria['id']; ?>">
+                    <option value="<?php echo $cat['id']; ?>">
                         <!-- Muestra el nombre de la categoría -->
-                        <?php echo $categoria['nombre']; ?>
+                        <?php echo $cat['nombre']; ?>
                     </option>
                     <!-- Fin del bucle PHP -->
                 <?php endforeach; ?>
