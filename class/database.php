@@ -1,4 +1,5 @@
 <?php
+
 // Definición de la clase 'Database' para manejar las operaciones de la base de datos.
 class Database
 {

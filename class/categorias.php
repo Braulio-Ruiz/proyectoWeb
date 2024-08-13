@@ -1,4 +1,5 @@
 <?php
+
 // Definición de la clase 'Categorias'.
 class Categorias
 {

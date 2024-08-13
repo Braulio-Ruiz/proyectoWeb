@@ -1,4 +1,5 @@
 <?php
+
 // Incluye el archivo autoload.php, que se encarga de cargar automáticamente las clases necesarias.
 // Este archivo debe estar configurado para buscar las clases en la carpeta 'class'.
 include 'class/autoload.php';

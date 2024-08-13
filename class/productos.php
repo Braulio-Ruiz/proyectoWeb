@@ -1,4 +1,5 @@
 <?php
+
 // Definición de la clase 'Productos' para manejar las operaciones relacionadas con los productos.
 class Productos
 {

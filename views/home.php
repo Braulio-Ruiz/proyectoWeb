@@ -1,4 +1,5 @@
 <?php
+
 // Incluye el archivo controlador /backend/productos.php.
 include 'backend/productos.php';
 ?>

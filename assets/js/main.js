@@ -4,4 +4,4 @@
 console.log('Archivo main.js cargado correctamente.');
 
 // Muestra un mensaje en la consola del navegador para dar la bienvenida y mencionar el proyecto y curso
-console.log('Que disfrutes mi sitio "miproyecto", Programaciom Web IPP 2024.');
+console.log('Que disfrutes mi sitio "miproyecto", Programaciom Web 2024.');

@@ -1,4 +1,5 @@
 <?php
+
 // Incluye el archivo controlador /backend/categorias.php.
 include '../categorias.php';
 ?>
