@@ -1,6 +1,7 @@
-// Espera a que el documento esté completamente cargado antes de ejecutar el código
-$(document).ready(function () {
+/* Validaciones para los formularios de categorías y productos */
 
+// Esta función se ejecuta cuando el documento HTML está completamente cargado y listo.
+$(document).ready(function () {
     // Define una función para validar los campos del formulario
     function validarCampos(campos) {
         var errores = []; // Crea un array para almacenar los nombres de los campos con errores
