@@ -1,168 +1,282 @@
 body {
     font-family: Arial, sans-serif;
+    /* Establece la fuente para todo el cuerpo del documento */
     background-color: #f0f0f0;
+    /* Color de fondo claro para el cuerpo */
     min-height: 100vh;
+    /* Asegura que el cuerpo cubra al menos la altura completa de la ventana */
     margin: 0;
+    /* Elimina el margen por defecto del cuerpo */
     display: flex;
+    /* Utiliza flexbox para manejar la disposición interna del cuerpo */
     flex-direction: column;
+    /* Alinea los elementos hijos en una columna */
 }
 
+/* Estiliza la cabecera del sitio web */
 header {
     display: flex;
+    /* Utiliza flexbox para alinear el contenido en la cabecera */
     height: 60px;
+    /* Establece una altura fija para la cabecera */
     color: #007BFF;
+    /* Color de texto inicial */
     background-color: #ffffff;
+    /* Fondo blanco para la cabecera */
     align-items: center;
+    /* Alinea verticalmente los elementos en el centro */
     padding: 10px;
+    /* Añade espacio interno alrededor del contenido */
     transition: 0.3s;
+    /* Aplica una transición suave para las propiedades */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* Añade una sombra sutil debajo de la cabecera */
 }
 
+/* Cambia el color de fondo y el texto cuando se pasa el cursor sobre la cabecera */
 header:hover {
     background-color: #007BFF;
+    /* Cambia el color de fondo al color de acento */
     color: #ffffff;
+    /* Cambia el color del texto a blanco */
 }
 
+/* Estilo para el logo en la cabecera */
 .logo {
     width: 220px;
+    /* Establece un ancho fijo para el logo */
     align-items: center;
+    /* Centra el logo verticalmente */
 }
 
+/* Elimina el subrayado predeterminado de los enlaces */
 a {
     text-decoration: none;
+    /* Elimina la decoración del texto (subrayado) */
 }
 
+/* Estilo para los encabezados h1 */
 h1 {
     display: flex;
+    /* Utiliza flexbox para el encabezado */
     text-align: center;
+    /* Centra el texto del encabezado */
     position: absolute;
-    left: 600px;
+    /* Posiciona absolutamente el h1 */
+    left: 50%;
+    /* Posiciona el encabezado al centro horizontalmente */
+    transform: translateX(-50%);
+    /* Centra el texto del encabezado exactamente */
 }
 
+/* Estilo para los contenedores de formularios y otros contenidos */
 .container {
     display: inline-table;
+    /* Presenta el contenedor como una tabla en línea */
     background-color: #fff;
+    /* Fondo blanco para el contenedor */
     border-radius: 8px;
+    /* Bordes redondeados para un diseño más suave */
     box-shadow: 0 0 20px #0000001a;
+    /* Sombra para elevar visualmente el contenedor */
     margin: 40px auto;
+    /* Centra el contenedor horizontalmente y añade margen superior e inferior */
     padding: 40px;
+    /* Espaciado interno alrededor del contenido */
     width: 80%;
+    /* Ocupa el 80% del ancho disponible */
     max-width: 600px;
+    /* Limita el ancho máximo a 600px para evitar estiramientos excesivos */
 }
 
+/* Estilo para los formularios */
 form {
     display: flex;
+    /* Utiliza flexbox para la disposición de los elementos del formulario */
     flex-direction: column;
+    /* Coloca los elementos del formulario en una columna */
 }
 
+/* Estilo para las etiquetas de los formularios */
 label {
     color: #666;
+    /* Color de texto gris para las etiquetas */
     font-weight: bold;
+    /* Hace que el texto de las etiquetas sea más grueso */
     margin: 10px 0 5px;
+    /* Añade espacio antes y después de las etiquetas */
 }
 
+/* Estilo para los campos de entrada de texto */
 input {
     border: 2px solid #ccc;
+    /* Borde gris claro alrededor de los campos de entrada */
     border-radius: 8px;
+    /* Bordes redondeados para los campos */
     padding: 10px;
+    /* Espaciado interno para un área de clic más grande */
     width: 96%;
+    /* Establece el ancho de los campos al 96% del contenedor */
 }
 
+/* Estilo para los botones */
 button {
     background-color: #007BFF;
+    /* Color de fondo azul para los botones */
     border: none;
+    /* Elimina el borde del botón */
     border-radius: 8px;
+    /* Bordes redondeados para el botón */
     color: #fff;
+    /* Color del texto en blanco */
     cursor: pointer;
+    /* Cambia el cursor a un puntero cuando pasa sobre el botón */
     font-size: 16px;
+    /* Establece un tamaño de fuente moderado para el botón */
     margin: 10px 0;
+    /* Añade margen arriba y abajo del botón */
     padding: 10px;
+    /* Añade espaciado interno al botón */
     transition: 0.3s;
+    /* Aplica una transición suave al cambiar propiedades */
 }
 
+/* Estilo para los botones de tipo submit cuando se pasa el cursor sobre ellos */
 button[type="submit"]:hover {
     background-color: #02c302;
+    /* Cambia el color de fondo a verde cuando se pasa el cursor */
 }
 
+/* Estilo para los botones de búsqueda cuando se pasa el cursor sobre ellos */
 button[class="search"]:hover {
     background-color: #00b7ff;
+    /* Cambia el color de fondo a azul claro al pasar el cursor */
 }
 
+/* Estilo específico para botones de clase 'delete' */
 button[class="delete"] {
     background-color: #c7c6c6;
+    /* Color gris para el botón de eliminación */
     max-width: 100px;
+    /* Limita el ancho máximo del botón */
     margin: 10px;
+    /* Añade margen alrededor del botón */
     align-self: center;
+    /* Centra el botón dentro de su contenedor */
 }
 
+/* Estilo para los botones de eliminación al pasar el cursor */
 button[class="delete"]:hover {
     background-color: #e30000;
+    /* Cambia el color de fondo a rojo cuando se pasa el cursor */
 }
 
+/* Estilo para los botones de tipo reset */
 button[type="reset"] {
     background-color: #c7c6c6;
+    /* Color gris para el botón de restablecimiento */
     transition: 0.3s;
+    /* Aplica una transición suave al cambiar propiedades */
 }
 
+/* Estilo para los botones de tipo reset cuando se pasa el cursor */
 button[type="reset"]:hover {
     background-color: #e30000;
+    /* Cambia el color de fondo a rojo cuando se pasa el cursor */
 }
 
+/* Estilo para los párrafos */
 p {
     color: #4b4b4b;
+    /* Color de texto gris oscuro para los párrafos */
     font-size: 15px;
+    /* Establece un tamaño de fuente moderado */
     text-align: center;
+    /* Centra el texto del párrafo */
     margin-top: 30px;
+    /* Añade margen superior al párrafo */
 }
 
+/* Estilo para la barra de navegación */
 .navigation {
     margin: 30px 0;
+    /* Añade margen arriba y abajo de la navegación */
     text-align: center;
+    /* Centra la barra de navegación */
 }
 
+/* Estilo para los enlaces de navegación */
 .nav-link {
     display: inline-block;
+    /* Muestra los enlaces como bloques en línea */
     margin: 0 30px;
+    /* Añade margen horizontal entre los enlaces */
     padding: 10px 20px;
+    /* Añade espaciado interno a los enlaces */
     background-color: #007BFF;
+    /* Color de fondo azul para los enlaces */
     color: #fff;
+    /* Color del texto en blanco */
     text-decoration: none;
+    /* Elimina la decoración del texto (subrayado) */
     border-radius: 8px;
+    /* Bordes redondeados para los enlaces */
     transition: 0.3s;
+    /* Aplica una transición suave al cambiar propiedades */
 }
 
+/* Estilo para los enlaces de navegación cuando se pasa el cursor sobre ellos */
 .nav-link:hover {
     background-color: #00b7ff;
+    /* Cambia el color de fondo a azul claro al pasar el cursor */
 }
 
+/* Estilo para las tablas */
 table {
     width: 100%;
+    /* Establece el ancho de la tabla al 100% del contenedor */
     border-collapse: collapse;
+    /* Colapsa los bordes de la tabla para una apariencia limpia */
     margin: 20px 0;
+    /* Añade margen arriba y abajo de la tabla */
     font-size: 18px;
+    /* Establece un tamaño de fuente grande para el contenido de la tabla */
     text-align: center;
+    /* Centra el contenido de las celdas de la tabla */
 }
 
+/* Estilo para las celdas de las tablas */
 table th,
 table td {
     padding: 12px;
+    /* Añade espaciado interno a las celdas de la tabla */
     border-bottom: 1px solid #ddd;
+    /* Añade una línea debajo de las celdas */
 }
 
+/* Estilo para las celdas de encabezado de las tablas */
 table th {
     background-color: #dbdada;
+    /* Fondo gris claro para las celdas de encabezado */
 }
 
+/* Estilo para las filas pares de la tabla */
 table tr:nth-child(even) {
     background-color: #f9f9f9;
+    /* Fondo gris claro para las filas pares */
 }
 
+/* Estilo para las filas de la tabla cuando se pasa el cursor sobre ellas */
 table tr:hover {
     background-color: #f1f1f1;
+    /* Cambia el color de fondo al pasar el cursor sobre las filas */
 }
 
+/* Estilo para los campos de entrada de texto y áreas de texto con errores */
 input.error,
 textarea.error {
     border: 1px solid #df0101;
+    /* Borde rojo para indicar error */
     background-color: #f8b6b6;
+    /* Fondo rojo claro para indicar error */
 }
