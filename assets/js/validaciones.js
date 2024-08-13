@@ -45,7 +45,7 @@ $(document).ready(function () {
     $("#formProductos").submit(function (event) {
         event.preventDefault(); // Previene el comportamiento por defecto del formulario (enviar la solicitud)
         // Selecciona todos los campos del formulario que deben ser validados
-        var campos = $("#nombreProducto, #descripcionProducto, #imagenProducto, #precioProducto, #categoriaProducto");
+        var campos = $("#nombreProducto, #descripcionProducto, #imagenProducto, #precioProducto");
         var errores = validarCampos(campos); // Llama a la función de validación para los campos seleccionados
         if (errores.length > 0) { // Verifica si hay errores
             alert("Completar los siguientes campos: " + errores.join(", ") + "."); // Muestra una alerta con los campos faltantes
