@@ -9,6 +9,6 @@ spl_autoload_register(function ($class_name) {
         include $file;
     } else {
         // Manejar la excepción si el archivo no se encuentra.
-        throw new Exception("Unable to load class: $class_name");
+        throw new Exception("No se puede cargar la clase: $class_name");
     }
 });
