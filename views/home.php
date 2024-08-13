@@ -1,5 +1,4 @@
 <?php
-
 // Incluye el archivo controlador /backend/productos.php.
 include 'backend/productos.php';
 ?>
@@ -14,7 +13,7 @@ include 'backend/productos.php';
     <!-- Define el título de la página que aparecerá en la pestaña del navegador -->
     <title>..:: SiberOs ::..</title>
     <!-- Enlaza el archivo de hoja de estilos CSS externo para aplicar estilos a la página -->
-    <link rel="stylesheet" href="assets/css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/estilos.css">
 </head>
 
 <body>

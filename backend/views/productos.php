@@ -1,5 +1,4 @@
 <?php
-
 // Incluye el archivo controlador /backend/categorias.php.
 include '../productos.php';
 // Incluye el archivo controlador /backend/categorias.php.
@@ -16,7 +15,7 @@ include '../categorias.php';
     <!-- Define el título del documento que se muestra en la pestaña del navegador -->
     <title>Agregar productos ..:: SiberOS ::..</title>
     <!-- Vincula el archivo de estilos CSS ubicado en '../../assets/css/estilos.css' -->
-    <link rel="stylesheet" href="../../assets/css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/estilos.css">
     <!-- Incluye la biblioteca jQuery desde una CDN, con una versión específica y una verificación de integridad -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
