@@ -4,7 +4,6 @@ $(document).ready(function () {
     // Define una función para validar los campos del formulario
     function validarCampos(campos) {
         var errores = []; // Crea un array para almacenar los nombres de los campos con errores
-
         // Itera sobre cada campo pasado a la función
         campos.each(function () {
             var $this = $(this); // Convierte el elemento actual en un objeto jQuery
@@ -20,11 +19,9 @@ $(document).ready(function () {
                 $this.removeClass('error'); // Elimina la clase 'error' si el campo no está vacío
             }
         });
-
         // Devuelve el array de errores
         return errores;
     }
-
     // Maneja los eventos 'keyup' y 'blur' en los campos de entrada dentro de los formularios especificados
     $("#formCategorias, #formProductos").on('keyup blur', 'input', function () {
         var $this = $(this); // Convierte el campo de entrada actual en un objeto jQuery
@@ -34,7 +31,6 @@ $(document).ready(function () {
             $this.removeClass('error'); // Elimina la clase 'error' si el campo no está vacío
         }
     });
-
     // Maneja el evento 'submit' del formulario con id 'formCategorias'
     $("#formCategorias").submit(function (event) {
         event.preventDefault(); // Previene el comportamiento por defecto del formulario (enviar la solicitud)
@@ -45,12 +41,11 @@ $(document).ready(function () {
         }
         this.submit(); // Envía el formulario si no hay errores
     });
-
     // Maneja el evento 'submit' del formulario con id 'formProductos'
     $("#formProductos").submit(function (event) {
         event.preventDefault(); // Previene el comportamiento por defecto del formulario (enviar la solicitud)
         // Selecciona todos los campos del formulario que deben ser validados
-        var campos = $("#nombreProducto, #descripcionProducto, #imagenProducto, #precioProducto");
+        var campos = $("#nombreProducto, #descripcionProducto, #imagenProducto, #precioProducto, #categoriaProducto");
         var errores = validarCampos(campos); // Llama a la función de validación para los campos seleccionados
         if (errores.length > 0) { // Verifica si hay errores
             alert("Completar los siguientes campos: " + errores.join(", ") + "."); // Muestra una alerta con los campos faltantes
@@ -58,7 +53,6 @@ $(document).ready(function () {
         }
         this.submit(); // Envía el formulario si no hay errores
     });
-
     // Maneja el evento 'click' en el botón con clase 'btn-cancelar'
     $('.btn-cancelar').on('click', function (event) {
         event.preventDefault(); // Previene el comportamiento por defecto del botón (enviar una solicitud o seguir un enlace)
