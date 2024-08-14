@@ -37,7 +37,7 @@ $(document).ready(function () {
         event.preventDefault(); // Previene el comportamiento por defecto del formulario (enviar la solicitud)
         var errores = validarCampos($("#nombreCategoria")); // Llama a la función de validación para el campo 'nombreCategoria'
         if (errores.length > 0) { // Verifica si hay errores
-            alert("Completar los siguientes campos: " + errores.join(", ") + " de la Categoria."); // Muestra una alerta con los campos faltantes
+            alert("Completar los siguientes campos: " + errores.join(", ") + " de la categoria."); // Muestra una alerta con los campos faltantes
             return false; // Previene el envío del formulario
         }
         this.submit(); // Envía el formulario si no hay errores
@@ -49,7 +49,7 @@ $(document).ready(function () {
         var campos = $("#nombreProducto, #descripcionProducto, #imagenProducto, #precioProducto");
         var errores = validarCampos(campos); // Llama a la función de validación para los campos seleccionados
         if (errores.length > 0) { // Verifica si hay errores
-            alert("Completar los siguientes campos: " + errores.join(", ") + " del Producto."); // Muestra una alerta con los campos faltantes
+            alert("Completar los siguientes campos: " + errores.join(", ") + " del producto."); // Muestra una alerta con los campos faltantes
             return false; // Previene el envío del formulario
         }
         this.submit(); // Envía el formulario si no hay errores

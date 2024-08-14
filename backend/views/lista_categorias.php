@@ -31,7 +31,9 @@ include '../categorias.php';
     <div class="container">
         <!-- Formulario de busqueda de Categorias -->
         <form method="GET" action="lista_categorias.php">
-            <input type="text" name="search" placeholder="Buscar categoria">
+            <!-- Campo para introducir el término de búsqueda -->
+            <input type="text" name="search" placeholder="Buscar categoria" aria-label="Buscar producto">
+            <!-- Botón para enviar la búsqueda -->
             <button class="search" type="submit">Buscar</button>
         </form>
         <!-- Inicio de la tabla para mostrar las categorías -->
@@ -57,11 +59,14 @@ include '../categorias.php';
                         <!-- Celda que muestra el ID de la categoría -->
                         <td><?php echo $cat['id']; ?></td>
                         <!-- Celda que muestra el nombre de la categoría -->
-                        <td><?php echo $cat['nombre']; ?></td>
+                        <td><?php echo htmlspecialchars($cat['nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
                         <!-- Celda que muestra el boton "Eliminar" -->
                         <td>
+                            <!-- Formulario para eliminar la categoria -->
                             <form method="POST" action="lista_categorias.php">
+                                <!-- Campo oculto con el ID de la categoria -->
                                 <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
+                                <!-- Botón para eliminar la categoria -->
                                 <button class="delete" type="submit" name="delete">Eliminar</button>
                             </form>
                         </td>

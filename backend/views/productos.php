@@ -39,29 +39,29 @@ include '../categorias.php';
             <!-- Etiqueta para el campo de entrada del nombre del producto -->
             <label for="nombreProducto">Nombre del Producto:</label>
             <!-- Campo de entrada de texto para el nombre del producto, con identificación 'nombreProducto' y nombre 'nombre' -->
-            <input type="text" id="nombreProducto" name="nombre">
+            <input type="text" id="nombreProducto" name="nombre" aria-label="Nombre del Producto">
             <!-- Etiqueta para el campo de entrada de la descripción del producto -->
             <label for="descripcionProducto">Descripción del Producto:</label>
             <!-- Campo de entrada de texto para la descripción del producto, con identificación 'descripcionProducto' y nombre 'descripcion' -->
-            <input type="text" id="descripcionProducto" name="descripcion">
+            <input type="text" id="descripcionProducto" name="descripcion" aria-label="Descripción del Producto">
             <!-- Etiqueta para el campo de entrada del precio del producto -->
             <label for="precioProducto">Precio del Producto:</label>
             <!-- Campo de entrada numérico para el precio del producto, con identificación 'precioProducto', nombre 'precio' y paso de 0.01 para decimales -->
-            <input type="number" id="precioProducto" name="precio" step="0.01">
+            <input type="number" id="precioProducto" name="precio" step="0.01" aria-label="Precio del Producto">
             <!-- Etiqueta para el campo de entrada de la imagen del producto -->
             <label for="imagenProducto">Imagen del Producto:</label>
             <!-- Campo de entrada de archivo para la imagen del producto, con identificación 'imagenProducto', nombre 'imagen' y aceptación de solo archivos de imagen -->
-            <input type="file" id="imagenProducto" name="imagen" accept="image/*">
+            <input type="file" id="imagenProducto" name="imagen" accept="image/*" aria-label="Imagen del Producto">
             <!-- Etiqueta para el campo de selección de la categoría del producto -->
             <label for="categoriaProducto">Categoría del Producto:</label>
             <!-- Campo de selección de la categoría del producto, con identificación 'categoriaProducto' y nombre 'categoria_id' -->
-            <select id="categoriaProducto" name="categoria_id">
+            <select id="categoriaProducto" name="categoria_id" aria-label="Categoría del Producto">
                 <!-- Bucle PHP para recorrer cada categoría y crear una opción en el campo de selección -->
                 <?php foreach ($categorias as $cat) : ?>
                     <!-- Opción del campo de selección con el valor del ID de la categoría -->
-                    <option value="<?php echo $cat['id']; ?>">
+                    <option value="<?php echo htmlspecialchars($cat['id'], ENT_QUOTES, 'UTF-8'); ?>">
                         <!-- Muestra el nombre de la categoría -->
-                        <?php echo $cat['nombre']; ?>
+                        <?php echo htmlspecialchars($cat['nombre'], ENT_QUOTES, 'UTF-8'); ?>
                     </option>
                     <!-- Fin del bucle PHP -->
                 <?php endforeach; ?>

@@ -5,12 +5,13 @@ include __DIR__ . '/../class/autoload.php';
 
 // Verifica si la solicitud HTTP es de tipo POST, lo que indica que el formulario fue enviado.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtener y sanitizar los datos del formulario.
     $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : null;
     $descripcion = isset($_POST['descripcion']) ? trim($_POST['descripcion']) : null;
     $precio = isset($_POST['precio']) ? trim($_POST['precio']) : null;
     $categoria_id = isset($_POST['categoria_id']) ? trim($_POST['categoria_id']) : null;
     $imagen = isset($_FILES['imagen']['name']) ? $_FILES['imagen']['name'] : null;
-    // Sanitizar entradas para evitar XSS
+    // Validar y sanitizar los datos.
     $nombre = htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8');
     $descripcion = htmlspecialchars($descripcion, ENT_QUOTES, 'UTF-8');
     $precio = htmlspecialchars($precio, ENT_QUOTES, 'UTF-8');
@@ -23,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $target_file = $target_dir . basename($imagen);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        // Compruebe si el archivo de imagen es una imagen real o una imagen falsa
+        // Compruebe si el archivo de imagen es una imagen
         $check = getimagesize($_FILES['imagen']['tmp_name']);
         if ($check !== false) {
             $uploadOk = 1;
@@ -41,19 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Lo siento, tu archivo es demasiado grande.";
             $uploadOk = 0;
         }
-        // Permitir ciertos formatos de archivo
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        // Limitar los formatos permitidos.
+        if (!in_array($imageFileType, ['jpg', 'png', 'jpeg', 'gif'])) {
             echo "Lo siento, solo se permiten archivos JPG, JPEG, PNG & GIF.";
             $uploadOk = 0;
         }
-        // Compruebe si $uploadOk está establecido en 0 por un error
-        if ($uploadOk == 0) {
-            echo "Lo siento, tu archivo no fue subido.";
-        }
-        // Si todo está bien, intenta subir el archivo.
-        else {
-            // Mueve el archivo subido desde su ubicación temporal a la ubicación de destino.
-            // Si la operación es exitosa, continúa con la siguiente lógica.
+        // Si todo es correcto, mover el archivo al directorio final.
+        if ($uploadOk == 1) {
             if (move_uploaded_file($_FILES['imagen']['tmp_name'], $target_file)) {
                 // Crea una nueva instancia de la clase Productos.
                 $producto = new Productos();
@@ -74,13 +69,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Finaliza el script para asegurar que no se ejecute ningún código adicional.
                 exit;
             } else {
-                echo "Error al subir la imagen.";
                 // Si el archivo no se pudo mover, muestra un mensaje de error.
+                echo "Error al subir la imagen.";
             }
+        } else {
+            // Si el archivo no se pudo subir, muestra un mensaje de error.
+            echo "Lo siento, tu archivo no fue subido.";
         }
-    }
-    // Si no se proporcionaron todos los datos necesarios, muestra un mensaje de error.
-    else {
+    } else {
+        // Si el datos no son completados, muestra un mensaje de error.
         echo "Error: Datos no proporcionados.";
     }
 }

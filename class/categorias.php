@@ -1,79 +1,109 @@
 <?php
 
-// Definición de la clase 'Categorias'.
+// Definición de la clase 'Categorias' que gestiona las operaciones relacionadas con las categorías.
 class Categorias
 {
-    // Declaración de propiedades privadas.
-    private $id;       // Propiedad para almacenar el ID de la categoría.
-    private $nombre;   // Propiedad para almacenar el nombre de la categoría.
-    private $db;       // Propiedad para almacenar la instancia de la base de datos.
-    // Método constructor de la clase, se ejecuta automáticamente al crear una instancia de la clase.
+    // Propiedades privadas para el ID, nombre de la categoría y la conexión a la base de datos.
+    private $id;
+    private $nombre;
+    private $db;
+    // Constructor de la clase que inicializa la conexión a la base de datos.
     public function __construct()
     {
-        // Crea una nueva instancia de la clase 'Database' y la asigna a la propiedad '$db'.
-        // Esto permite utilizar la base de datos en otros métodos de esta clase.
-        $this->db = new Database();
+        try {
+            // Crea una nueva instancia de la clase 'Database' para la conexión a la base de datos.
+            $this->db = new Database();
+        } catch (Exception $e) {
+            // Maneja cualquier error al intentar conectar con la base de datos.
+            die("Error al conectar con la base de datos: " . $e->getMessage());
+        }
     }
-    // Método para establecer el ID de la categoría.
+    // Establece el ID de la categoría, validando que sea un entero válido.
     public function setId($id)
     {
-        // Asigna el valor del parámetro '$id' a la propiedad privada '$id' de la clase.
-        $this->id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
+        // Validación de que el ID sea un número entero válido.
+        if (filter_var($id, FILTER_VALIDATE_INT)) {
+            // Sanitiza el ID antes de asignarlo para evitar inyecciones.
+            $this->id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
+        } else {
+            // Si el ID no es válido, establece null para evitar operaciones incorrectas.
+            $this->id = null;
+        }
     }
-    // Método para establecer el nombre de la categoría.
+    // Establece el nombre de la categoría, asegurando que esté sanitizado.
     public function setNombre($nombre)
     {
-        // Asigna el valor del parámetro '$nombre' a la propiedad privada '$nombre' de la clase.
+        // Sanitiza el nombre de la categoría para evitar inyecciones de código.
         $this->nombre = htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8');
     }
-    // Método para guardar los datos de la categoría en la base de datos.
+    // Guarda los datos de la categoría en la base de datos, actualizando si ya existe o insertando una nueva.
     public function guardar()
     {
-        // Crea un array '$data' que contiene el nombre de la categoría.
-        $data = [
-            'nombre' => $this->nombre
-        ];
-        // Si la propiedad '$id' está establecida (es decir, no es null), entonces se actualiza una categoría existente.
-        if ($this->id) {
-            // Agrega el ID de la categoría al array '$data'.
-            $data['id'] = $this->id;
-            // Llama al método 'update' de la clase 'Database' para actualizar la categoría en la base de datos.
-            // Pasa el nombre de la tabla ('categorias'), el array de datos ('$data') y la condición ('id = ' . $this->id).
-            $this->db->update('categorias', $data, 'id = ' . $this->id);
-        }
-        // Si la propiedad '$id' no está establecida, entonces se inserta una nueva categoría.
-        else {
-            // Llama al método 'insert' de la clase 'Database' para insertar la nueva categoría en la base de datos.
-            // Pasa el nombre de la tabla ('categorias') y el array de datos ('$data').
-            $this->db->insert('categorias', $data);
+        // Verifica que el nombre esté definido antes de continuar.
+        if (!empty($this->nombre)) {
+            // Array de datos para guardar o actualizar en la base de datos.
+            $data = [
+                'nombre' => $this->nombre
+            ];
+            try {
+                // Si el ID está definido, actualiza la categoría existente.
+                if ($this->id) {
+                    // Actualiza la categoría en la base de datos según su ID.
+                    $this->db->update('categorias', $data, 'id = ' . $this->id);
+                } else {
+                    // Inserta una nueva categoría en la base de datos.
+                    $this->db->insert('categorias', $data);
+                }
+            } catch (Exception $e) {
+                // Maneja cualquier error durante la operación en la base de datos.
+                die("Error al guardar la categoría: " . $e->getMessage());
+            }
+        } else {
+            // Si el nombre de la categoría no está definido, lanza un error.
+            die("El nombre de la categoría no puede estar vacío.");
         }
     }
-    // Método para eliminar una categoría de la base de datos.
+    // Elimina una categoría de la base de datos utilizando el ID.
     public function eliminar()
     {
-        // Si la propiedad '$id' está establecida (es decir, no es null), entonces se procede a eliminar la categoría.
+        // Verifica que el ID esté definido antes de intentar eliminar la categoría.
         if ($this->id) {
-            // Llama al método 'delete' de la clase 'Database' para eliminar la categoría de la base de datos.
-            // Pasa el nombre de la tabla ('categorias') y la condición ('id = ' . $this->id).
-            $this->db->delete('categorias', 'id = ' . $this->id);
+            try {
+                // Elimina la categoría de la base de datos según su ID.
+                $this->db->delete('categorias', 'id = ' . $this->id);
+            } catch (Exception $e) {
+                // Maneja cualquier error durante la operación de eliminación.
+                die("Error al eliminar la categoría: " . $e->getMessage());
+            }
+        } else {
+            // Si el ID no está definido, lanza un error.
+            die("El ID de la categoría no está definido.");
         }
     }
-    // Método para obtener todas las categorías de la base de datos.
+    // Obtiene todas las categorías de la base de datos y devuelve un array con los resultados.
     public function obtenerTodas()
     {
-        // Llama al método 'select' de la clase 'Database' para obtener todas las filas de la tabla 'categorias'.
-        // Devuelve el resultado de la consulta.
-        return $this->db->select('SELECT * FROM categorias');
+        try {
+            // Selecciona todas las filas de la tabla 'categorias' y las devuelve.
+            return $this->db->select('SELECT * FROM categorias');
+        } catch (Exception $e) {
+            // Maneja cualquier error durante la consulta.
+            die("Error al obtener las categorías: " . $e->getMessage());
+        }
     }
-    // Método para buscar en el listado de categorías por nombre.
+    // Busca categorías en la base de datos que coincidan con el término proporcionado.
     public function buscar($term)
     {
+        // Sanitiza el término de búsqueda para evitar inyecciones SQL.
         $search = "%{$term}%";
-        // Realiza la búsqueda en la tabla 'categorias' basándose en el nombre de la categoría.
-        $sql = "SELECT * FROM categorias WHERE nombre LIKE ?";
-        // Ejecuta la consulta SQL utilizando el método 'select' de la clase 'Database',
-        // pasando el término de búsqueda como un parámetro para evitar inyecciones SQL,
-        // y devuelve los resultados obtenidos.
-        return $this->db->select($sql, [$search]);
+        try {
+            // Realiza una búsqueda en la base de datos según el nombre de la categoría.
+            $sql = "SELECT * FROM categorias WHERE nombre LIKE ?";
+            // Ejecuta la consulta SQL con el término de búsqueda y devuelve los resultados.
+            return $this->db->select($sql, [$search]);
+        } catch (Exception $e) {
+            // Maneja cualquier error durante la búsqueda.
+            die("Error al buscar categorías: " . $e->getMessage());
+        }
     }
 }
