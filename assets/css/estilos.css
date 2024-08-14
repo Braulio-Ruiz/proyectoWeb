@@ -57,8 +57,6 @@ a {
 
 /* Estilo para los encabezados h1 */
 h1 {
-    /* Utiliza flexbox para el encabezado */
-    display: flex;
     /* Centra el texto del encabezado */
     text-align: center;
     /* Posiciona absolutamente el h1 */
