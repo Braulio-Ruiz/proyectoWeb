@@ -1,205 +1,228 @@
+/* Variables CSS para colores */
+:root {
+    /* Color primario */
+    --primary-color: #007BFF;
+    /* Color primario al hacer hover */
+    --primary-hover-color: #00b7ff;
+    /* Color secundario */
+    --secondary-color: #666;
+    /* Color de fondo principal */
+    --background-color: #f0f0f0;
+    /* Color blanco */
+    --white-color: #ffffff;
+    /* Color gris claro */
+    --gray-light-color: #dbdada;
+    /* Color gris oscuro */
+    --gray-dark-color: #4b4b4b;
+    /* Color para los bordes de error */
+    --error-color: #df0101;
+    /* Color de fondo para los campos en error */
+    --error-bg-color: #f8b6b6;
+}
+
+/* Estilos globales para el cuerpo del documento */
 body {
-    /* Establece la fuente para todo el cuerpo del documento */
+    /* Fuente para todo el cuerpo */
     font-family: Arial, sans-serif;
-    /* Color de fondo claro para el cuerpo */
-    background-color: #f0f0f0;
+    /* Color de fondo */
+    background-color: var(--background-color);
     /* Asegura que el cuerpo cubra al menos la altura completa de la ventana */
     min-height: 100vh;
-    /* Elimina el margen por defecto del cuerpo */
+    /* Elimina el margen por defecto */
     margin: 0;
-    /* Utiliza flexbox para manejar la disposición interna del cuerpo */
+    /* Utiliza flexbox para manejar la disposición interna */
     display: flex;
-    /* Alinea los elementos hijos en una columna */
+    /* Alinea los elementos en una columna */
     flex-direction: column;
 }
 
-/* Estiliza la cabecera del sitio web */
+/* Cabecera del sitio */
 header {
-    /* Utiliza flexbox para alinear el contenido en la cabecera */
+    /* Utiliza flexbox para alinear contenido */
     display: flex;
-    /* Establece una altura fija para la cabecera */
+    /* Establece una altura fija */
     height: 60px;
-    /* Color de texto inicial */
-    color: #007BFF;
-    /* Fondo blanco para la cabecera */
-    background-color: #ffffff;
-    /* Alinea verticalmente los elementos en el centro */
+    /* Color de texto */
+    color: var(--primary-color);
+    /* Fondo blanco */
+    background-color: var(--white-color);
+    /* Alinea verticalmente el contenido */
     align-items: center;
-    /* Añade espacio interno alrededor del contenido */
+    /* Espaciado interno */
     padding: 10px;
-    /* Aplica una transición suave para las propiedades */
+    /* Transición suave para cambios */
     transition: 0.3s;
-    /* Añade una sombra sutil debajo de la cabecera */
+    /* Sombra sutil debajo de la cabecera */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Cambia el color de fondo y el texto cuando se pasa el cursor sobre la cabecera */
+/* Cambio de estilo al hacer hover sobre la cabecera */
 header:hover {
-    /* Cambia el color de fondo al color de acento */
-    background-color: #007BFF;
-    /* Cambia el color del texto a blanco */
-    color: #ffffff;
+    /* Cambia el color de fondo */
+    background-color: var(--primary-color);
+    /* Cambia el color del texto */
+    color: var(--white-color);
 }
 
 /* Estilo para el logo en la cabecera */
 .logo {
-    /* Establece un ancho fijo para el logo */
+    /* Ancho fijo para el logo */
     width: 220px;
     /* Centra el logo verticalmente */
     align-items: center;
 }
 
-/* Elimina el subrayado predeterminado de los enlaces */
+/* Estilo general para los enlaces */
 a {
-    /* Elimina la decoración del texto (subrayado) */
+    /* Elimina la decoración del texto */
     text-decoration: none;
 }
 
-/* Estilo para los encabezados h1 */
+/* Encabezados de primer nivel */
 h1 {
     /* Centra el texto del encabezado */
     text-align: center;
-    /* Posiciona absolutamente el h1 */
+    /* Posiciona el encabezado de manera absoluta */
     position: absolute;
-    /* Posiciona el encabezado al centro horizontalmente */
+    /* Centra horizontalmente */
     left: 50%;
-    /* Centra el texto del encabezado exactamente */
+    /* Ajusta para centrar exactamente */
     transform: translateX(-50%);
 }
 
-/* Estilo para los contenedores de formularios y otros contenidos */
+/* Estilo para los contenedores */
 .container {
     /* Presenta el contenedor como una tabla en línea */
     display: inline-table;
-    /* Fondo blanco para el contenedor */
-    background-color: #fff;
-    /* Bordes redondeados para un diseño más suave */
+    /* Fondo blanco */
+    background-color: var(--white-color);
+    /* Bordes redondeados */
     border-radius: 8px;
-    /* Sombra para elevar visualmente el contenedor */
-    box-shadow: 0 0 20px #0000001a;
-    /* Centra el contenedor horizontalmente y añade margen superior e inferior */
+    /* Sombra para dar efecto de elevación */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* Centra el contenedor con márgenes */
     margin: 40px auto;
-    /* Espaciado interno alrededor del contenido */
+    /* Espaciado interno */
     padding: 40px;
-    /* Ocupa el 80% del ancho disponible */
+    /* Ancho del 80% del contenedor */
     width: 80%;
-    /* Limita el ancho máximo a 600px para evitar estiramientos excesivos */
+    /* Ancho máximo para evitar estiramientos */
     max-width: 600px;
 }
 
 /* Estilo para los formularios */
 form {
-    /* Utiliza flexbox para la disposición de los elementos del formulario */
+    /* Utiliza flexbox para la disposición */
     display: flex;
-    /* Coloca los elementos del formulario en una columna */
+    /* Coloca los elementos en una columna */
     flex-direction: column;
 }
 
 /* Estilo para las etiquetas de los formularios */
 label {
-    /* Color de texto gris para las etiquetas */
-    color: #666;
-    /* Hace que el texto de las etiquetas sea más grueso */
+    /* Color de texto */
+    color: var(--secondary-color);
+    /* Texto en negrita */
     font-weight: bold;
-    /* Añade espacio antes y después de las etiquetas */
+    /* Espaciado antes y después */
     margin: 10px 0 5px;
 }
 
-/* Estilo para los campos de entrada de texto */
+/* Estilo para los campos de entrada */
 input {
-    /* Borde gris claro alrededor de los campos de entrada */
+    /* Borde alrededor de los campos */
     border: 2px solid #ccc;
-    /* Bordes redondeados para los campos */
+    /* Bordes redondeados */
     border-radius: 8px;
-    /* Espaciado interno para un área de clic más grande */
+    /* Espaciado interno */
     padding: 10px;
-    /* Establece el ancho de los campos al 96% del contenedor */
+    /* Ancho del 96% del contenedor */
     width: 96%;
 }
 
 /* Estilo para los botones */
 button {
-    /* Color de fondo azul para los botones */
-    background-color: #007BFF;
-    /* Elimina el borde del botón */
+    /* Color de fondo */
+    background-color: var(--primary-color);
+    /* Elimina el borde */
     border: none;
-    /* Bordes redondeados para el botón */
+    /* Bordes redondeados */
     border-radius: 8px;
-    /* Color del texto en blanco */
-    color: #fff;
-    /* Cambia el cursor a un puntero cuando pasa sobre el botón */
+    /* Color del texto */
+    color: var(--white-color);
+    /* Cambia el cursor al pasar sobre el botón */
     cursor: pointer;
-    /* Establece un tamaño de fuente moderado para el botón */
+    /* Tamaño de fuente moderado */
     font-size: 16px;
-    /* Añade margen arriba y abajo del botón */
+    /* Márgenes superiores e inferiores */
     margin: 10px 0;
-    /* Añade espaciado interno al botón */
+    /* Espaciado interno */
     padding: 10px;
-    /* Aplica una transición suave al cambiar propiedades */
+    /* Transición suave */
     transition: 0.3s;
 }
 
-/* Estilo para los botones de tipo submit cuando se pasa el cursor sobre ellos */
+/* Estilo para los botones de tipo submit al hacer hover */
 button[type="submit"]:hover {
-    /* Cambia el color de fondo a verde cuando se pasa el cursor */
+    /* Cambia el color de fondo */
     background-color: #02c302;
 }
 
-/* Estilo para los botones de búsqueda cuando se pasa el cursor sobre ellos */
+/* Estilo para los botones de búsqueda al hacer hover */
 button[class="search"]:hover {
-    /* Cambia el color de fondo a azul claro al pasar el cursor */
-    background-color: #00b7ff;
+    /* Cambia el color de fondo */
+    background-color: var(--primary-hover-color);
 }
 
-/* Estilo específico para botones de clase 'delete' */
+/* Estilo específico para los botones de clase 'delete' */
 button[class="delete"] {
-    /* Color gris para el botón de eliminación */
+    /* Color de fondo gris */
     background-color: #c7c6c6;
-    /* Limita el ancho máximo del botón */
+    /* Ancho máximo */
     max-width: 100px;
-    /* Añade margen alrededor del botón */
+    /* Márgenes alrededor del botón */
     margin: 10px;
-    /* Centra el botón dentro de su contenedor */
+    /* Centra el botón */
     align-self: center;
 }
 
-/* Estilo para los botones de eliminación al pasar el cursor */
+/* Estilo para los botones de eliminación al hacer hover */
 button[class="delete"]:hover {
-    /* Cambia el color de fondo a rojo cuando se pasa el cursor */
+    /* Cambia el color de fondo a rojo */
     background-color: #e30000;
 }
 
 /* Estilo para los botones de tipo reset */
 button[type="reset"] {
-    /* Color gris para el botón de restablecimiento */
+    /* Color de fondo gris */
     background-color: #c7c6c6;
-    /* Aplica una transición suave al cambiar propiedades */
+    /* Transición suave */
     transition: 0.3s;
 }
 
-/* Estilo para los botones de tipo reset cuando se pasa el cursor */
+/* Estilo para los botones de tipo reset al hacer hover */
 button[type="reset"]:hover {
-    /* Cambia el color de fondo a rojo cuando se pasa el cursor */
+    /* Cambia el color de fondo a rojo */
     background-color: #e30000;
 }
 
 /* Estilo para los párrafos */
 p {
-    /* Color de texto gris oscuro para los párrafos */
-    color: #4b4b4b;
-    /* Establece un tamaño de fuente moderado */
+    /* Color de texto gris oscuro */
+    color: var(--gray-dark-color);
+    /* Tamaño de fuente */
     font-size: 15px;
-    /* Centra el texto del párrafo */
+    /* Centra el texto */
     text-align: center;
-    /* Añade margen superior al párrafo */
+    /* Márgenes superiores */
     margin-top: 30px;
 }
 
 /* Estilo para la barra de navegación */
 .navigation {
-    /* Añade margen arriba y abajo de la navegación */
+    /* Márgenes arriba y abajo */
     margin: 30px 0;
-    /* Centra la barra de navegación */
+    /* Centra la navegación */
     text-align: center;
 }
 
@@ -207,74 +230,95 @@ p {
 .nav-link {
     /* Muestra los enlaces como bloques en línea */
     display: inline-block;
-    /* Añade margen horizontal entre los enlaces */
+    /* Márgenes horizontales */
     margin: 0 30px;
-    /* Añade espaciado interno a los enlaces */
+    /* Espaciado interno */
     padding: 10px 20px;
-    /* Color de fondo azul para los enlaces */
-    background-color: #007BFF;
-    /* Color del texto en blanco */
-    color: #fff;
-    /* Elimina la decoración del texto (subrayado) */
+    /* Color de fondo */
+    background-color: var(--primary-color);
+    /* Color del texto */
+    color: var(--white-color);
+    /* Elimina la decoración del texto */
     text-decoration: none;
-    /* Bordes redondeados para los enlaces */
+    /* Bordes redondeados */
     border-radius: 8px;
-    /* Aplica una transición suave al cambiar propiedades */
+    /* Transición suave */
     transition: 0.3s;
 }
 
-/* Estilo para los enlaces de navegación cuando se pasa el cursor sobre ellos */
+/* Estilo para los enlaces de navegación al hacer hover */
 .nav-link:hover {
-    /* Cambia el color de fondo a azul claro al pasar el cursor */
-    background-color: #00b7ff;
+    /* Cambia el color de fondo */
+    background-color: var(--primary-hover-color);
 }
 
 /* Estilo para las tablas */
 table {
-    /* Establece el ancho de la tabla al 100% del contenedor */
+    /* Ancho completo */
     width: 100%;
-    /* Colapsa los bordes de la tabla para una apariencia limpia */
+    /* Colapsa los bordes */
     border-collapse: collapse;
-    /* Añade margen arriba y abajo de la tabla */
+    /* Márgenes superiores e inferiores */
     margin: 20px 0;
-    /* Establece un tamaño de fuente grande para el contenido de la tabla */
+    /* Tamaño de fuente */
     font-size: 18px;
-    /* Centra el contenido de las celdas de la tabla */
+    /* Centra el contenido */
     text-align: center;
 }
 
 /* Estilo para las celdas de las tablas */
 table th,
 table td {
-    /* Añade espaciado interno a las celdas de la tabla */
+    /* Espaciado interno */
     padding: 12px;
-    /* Añade una línea debajo de las celdas */
+    /* Línea inferior */
     border-bottom: 1px solid #ddd;
 }
 
-/* Estilo para las celdas de encabezado de las tablas */
+/* Estilo para las celdas de encabezado */
 table th {
-    /* Fondo gris claro para las celdas de encabezado */
-    background-color: #dbdada;
+    /* Fondo gris claro */
+    background-color: var(--gray-light-color);
 }
 
-/* Estilo para las filas pares de la tabla */
+/* Estilo para las filas pares */
 table tr:nth-child(even) {
-    /* Fondo gris claro para las filas pares */
+    /* Fondo gris claro */
     background-color: #f9f9f9;
 }
 
-/* Estilo para las filas de la tabla cuando se pasa el cursor sobre ellas */
+/* Estilo para las filas al hacer hover */
 table tr:hover {
-    /* Cambia el color de fondo al pasar el cursor sobre las filas */
+    /* Cambia el color de fondo */
     background-color: #f1f1f1;
 }
 
-/* Estilo para los campos de entrada de texto y áreas de texto con errores */
+/* Estilos de error para campos de entrada */
 input.error,
 textarea.error {
-    /* Borde rojo para indicar error */
-    border: 1px solid #df0101;
-    /* Fondo rojo claro para indicar error */
-    background-color: #f8b6b6;
+    /* Borde rojo */
+    border: 1px solid var(--error-color);
+    /* Fondo rojo claro */
+    background-color: var(--error-bg-color);
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+
+    /* Ajusta el ancho del contenedor */
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    /* Ajusta márgenes y padding de los enlaces de navegación */
+    .nav-link {
+        margin: 0 15px;
+        padding: 10px;
+    }
+
+    /* Ancho completo para los botones */
+    button {
+        width: 100%;
+    }
 }
