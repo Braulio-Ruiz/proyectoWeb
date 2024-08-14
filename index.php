@@ -1,13 +1,22 @@
 <?php
 
-// Incluye el archivo autoload.php, que se encarga de cargar automáticamente las clases necesarias.
-// Este archivo debe estar configurado para buscar las clases en la carpeta 'class'.
-include 'class/autoload.php';
+// Verifica si el archivo autoload.php existe antes de intentar cargarlo.
+if (file_exists('class/autoload.php')) {
+    // Incluye el archivo autoload.php una vez para cargar automáticamente las clases necesarias.
+    require_once 'class/autoload.php';
+} else {
+    // Si el archivo no existe, muestra un mensaje de error y detiene la ejecución.
+    die('Error: El archivo autoload.php no se encuentra.');
+}
 
-// Incluye el archivo 'home.php' que se encuentra en la carpeta 'views'.
-// Este archivo es responsable de generar y mostrar el HTML de la página de inicio del sitio web.
-include 'views/home.php';
+// Verifica si el archivo home.php existe antes de intentar cargarlo.
+if (file_exists('views/home.php')) {
+    // Incluye el archivo home.php para mostrar la página de inicio.
+    require_once 'views/home.php';
+} else {
+    // Si el archivo no existe, muestra un mensaje de error y detiene la ejecución.
+    die('Error: El archivo home.php no se encuentra.');
+}
 
-// Termina la ejecución del script.
-// Esto asegura que no se ejecutará ningún código adicional después de la inclusión de 'home.php'.
+// Termina la ejecución del script para evitar la ejecución de código adicional.
 exit;

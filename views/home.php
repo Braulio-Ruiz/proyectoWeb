@@ -67,20 +67,23 @@ include 'backend/productos.php';
             <tbody>
                 <!-- Inicia un bucle PHP para iterar sobre cada producto en la variable $productos -->
                 <?php foreach ($productos as $prod) : ?>
-                    <!-- Define una fila de la tabla para cada producto -->
+                    <!-- Fila de la tabla para cada producto -->
                     <tr>
-                        <!-- Muestra el ID del producto en una celda de la tabla -->
+                        <!-- Celda que muestra el ID del producto -->
                         <td><?php echo $prod['id']; ?></td>
-                        <!-- Muestra el nombre del producto en una celda de la tabla -->
-                        <td><?php echo $prod['nombre']; ?></td>
-                        <!-- Muestra la descripción del producto en una celda de la tabla -->
-                        <td><?php echo $prod['descripcion']; ?></td>
-                        <!-- Muestra el precio del producto formateado en una celda de la tabla -->
+                        <!-- Celda que muestra el nombre del producto -->
+                        <td><?php echo htmlspecialchars($prod['nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <!-- Celda que muestra la descripción del producto -->
+                        <td><?php echo htmlspecialchars($prod['descripcion'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <!-- Celda que muestra el precio del producto, formateado con puntos como separadores de miles y sin decimales -->
                         <td><?php echo '$', number_format($prod['precio'], 0, ',', '.'); ?></td>
-                        <!-- Muestra la imagen del producto en una celda de la tabla. El atributo src construye la ruta de la imagen, y el atributo alt proporciona texto alternativo -->
-                        <td><img src="assets/img/<?php echo $prod['imagen']; ?>" alt="<?php echo $prod['nombre']; ?>" style="width: 100px; height: auto;"></td>
-                        <!-- Muestra el ID de la categoría del producto en una celda de la tabla -->
-                        <td><?php echo $prod['categoria_nombre']; ?></td>
+                        <!-- Celda que muestra la imagen del producto, con una anchura de 100px y altura automática -->
+                        <td>
+                            <!-- Mostrar la imagen del producto -->
+                            <img src="assets/img/<?php echo htmlspecialchars($prod['imagen']); ?>" alt="<?php echo htmlspecialchars($prod['nombre']); ?>" style="width: 100px; height: auto;">
+                        </td>
+                        <!-- Celda que muestra el ID de la categoría del producto -->
+                        <td><?php echo htmlspecialchars($prod['categoria_nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
                     </tr>
                     <!-- Cierra el bucle PHP -->
                 <?php endforeach; ?>
