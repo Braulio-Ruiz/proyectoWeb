@@ -17,8 +17,8 @@ body {
 header {
     /* Utiliza flexbox para alinear el contenido en la cabecera */
     display: flex;
-    /* Establece una altura fija para la cabecera */
-    height: 60px;
+    /* Altura ajustable en función del tamaño de la ventana */
+    height: 8vh;
     /* Color de texto inicial */
     color: #007BFF;
     /* Fondo blanco para la cabecera */
@@ -65,6 +65,8 @@ h1 {
     left: 50%;
     /* Centra el texto del encabezado exactamente */
     transform: translateX(-50%);
+    /* Tamaño de fuente relativo al ancho de la ventana */
+    font-size: 3vw;
 }
 
 /* Estilo para los contenedores de formularios y otros contenidos */
@@ -281,6 +283,16 @@ textarea.error {
 
 /* Media queries para dispositivos móviles */
 @media (max-width: 768px) {
+
+    /* Ajusta el ancho del header */
+    header {
+        height: 10vw;
+    }
+
+    h1 {
+        left: 70%;
+        font-size: 5vw;
+    }
 
     /* Ajusta el ancho del contenedor */
     .container {
