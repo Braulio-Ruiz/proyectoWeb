@@ -286,11 +286,15 @@ textarea.error {
 
     /* Ajusta el ancho del header */
     header {
-        height: 14vw;
+        height: 12vw;
+    }
+
+    .logo {
+        width: 35vw;
     }
 
     h1 {
-        left: 78%;
+        left: 65%;
         font-size: 4.5vw;
     }
 
