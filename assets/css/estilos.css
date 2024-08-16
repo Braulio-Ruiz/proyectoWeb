@@ -66,7 +66,7 @@ h1 {
     /* Centra el texto del encabezado exactamente */
     transform: translateX(-50%);
     /* Tamaño de fuente relativo al ancho de la ventana */
-    font-size: 3vw;
+    font-size: 2.8vw;
 }
 
 /* Estilo para los contenedores de formularios y otros contenidos */
@@ -109,6 +109,18 @@ label {
 
 /* Estilo para los campos de entrada de texto */
 input {
+    /* Borde gris claro alrededor de los campos de entrada */
+    border: 2px solid #ccc;
+    /* Bordes redondeados para los campos */
+    border-radius: 8px;
+    /* Espaciado interno para un área de clic más grande */
+    padding: 10px;
+    /* Establece el ancho de los campos al 96% del contenedor */
+    width: 96%;
+}
+
+/* Estilo para los campos */
+option {
     /* Borde gris claro alrededor de los campos de entrada */
     border: 2px solid #ccc;
     /* Bordes redondeados para los campos */
@@ -286,18 +298,23 @@ textarea.error {
 
     /* Ajusta el ancho del header */
     header {
-        height: 10vw;
+        height: 14vw;
     }
 
     h1 {
-        left: 70%;
-        font-size: 5vw;
+        left: 78%;
+        font-size: 4.5vw;
     }
 
     /* Ajusta el ancho del contenedor */
     .container {
         width: 90%;
-        padding: 20px;
+        padding: 10px;
+    }
+
+    table {
+        width: 100%;
+        font-size: 11.8px;
     }
 
     /* Ajusta márgenes y padding de los enlaces de navegación */
@@ -306,8 +323,16 @@ textarea.error {
         padding: 10px;
     }
 
+    input {
+        width: 94%;
+    }
+
     /* Ancho completo para los botones */
     button {
-        width: 100%;
+        width: 99%;
+    }
+
+    button[class="delete"] {
+        width: 80%;
     }
 }
