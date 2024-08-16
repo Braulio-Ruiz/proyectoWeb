@@ -86,7 +86,7 @@ include '../productos.php';
                                 <!-- Campo oculto con el ID del producto -->
                                 <input type="hidden" name="id" value="<?php echo $prod['id']; ?>">
                                 <!-- Botón para eliminar el producto -->
-                                <button class="delete" type="submit" name="delete">Eliminar</button>
+                                <button class="delete" type="submit" name="delete" onclick="eliminarProducto(<?php echo $prod['id']; ?>)">Eliminar</button>
                             </form>
                         </td>
                     </tr>
@@ -99,6 +99,8 @@ include '../productos.php';
         <!-- Párrafo con el texto 'Creado por Braulio Ruiz Niñoles' -->
         <p>Creado por Braulio Ruiz Niñoles</p>
     </div>
+    <!-- Incluye el archivo JavaScript de validaciones ubicado en '../../assets/js/validaciones.js' -->
+    <script src="../../assets/js/validaciones.js"></script>
     <!-- Incluye el archivo JavaScript principal ubicado en '../../assets/js/main.js' -->
     <script src="../../assets/js/main.js"></script>
 </body>

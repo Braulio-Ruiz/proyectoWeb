@@ -64,3 +64,15 @@ $(document).ready(function () {
         }
     });
 });
+
+// Función para eliminar una categoría
+function eliminarCategoria() {
+    // Confirmación antes de proceder
+    if (confirm('¿Estás seguro de que deseas eliminar esta categoría?')) { }
+}
+
+// Función para eliminar un producto
+function eliminarProducto() {
+    // Confirmación antes de proceder
+    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) { }
+}

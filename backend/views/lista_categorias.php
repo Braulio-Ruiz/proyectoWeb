@@ -67,7 +67,7 @@ include '../categorias.php';
                                 <!-- Campo oculto con el ID de la categoria -->
                                 <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
                                 <!-- Botón para eliminar la categoria -->
-                                <button class="delete" type="submit" name="delete">Eliminar</button>
+                                <button class="delete" type="submit" name="delete" onclick="eliminarCategoria(<?php echo $cat['id']; ?>)">Eliminar</button>
                             </form>
                         </td>
                     </tr>
@@ -80,6 +80,8 @@ include '../categorias.php';
         <!-- Párrafo con el texto 'Creado por Braulio Ruiz Niñoles' -->
         <p>Creado por Braulio Ruiz Niñoles</p>
     </div>
+    <!-- Incluye el archivo JavaScript de validaciones ubicado en '../../assets/js/validaciones.js' -->
+    <script src="../../assets/js/validaciones.js"></script>
     <!-- Incluye el archivo JavaScript principal ubicado en '../../assets/js/main.js' -->
     <script src="../../assets/js/main.js"></script>
 </body>

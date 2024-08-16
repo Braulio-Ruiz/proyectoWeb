@@ -119,18 +119,6 @@ input {
     width: 96%;
 }
 
-/* Estilo para los campos */
-option {
-    /* Borde gris claro alrededor de los campos de entrada */
-    border: 2px solid #ccc;
-    /* Bordes redondeados para los campos */
-    border-radius: 8px;
-    /* Espaciado interno para un área de clic más grande */
-    padding: 10px;
-    /* Establece el ancho de los campos al 96% del contenedor */
-    width: 96%;
-}
-
 /* Estilo para los botones */
 button {
     /* Color de fondo azul para los botones */
