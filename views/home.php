@@ -65,28 +65,34 @@ include 'backend/productos.php';
             </thead>
             <!-- Define el cuerpo de la tabla -->
             <tbody>
-                <!-- Inicia un bucle PHP para iterar sobre cada producto en la variable $productos -->
-                <?php foreach ($productos as $prod) : ?>
-                    <!-- Fila de la tabla para cada producto -->
+                <!-- Inicia un bucle PHP para recorrer cada categoría -->
+                <?php if (is_array($productos) && count($productos) > 0): ?>
+                    <?php foreach ($productos as $prod) : ?>
+                        <!-- Fila de la tabla para cada producto -->
+                        <tr>
+                            <!-- Celda que muestra el ID del producto -->
+                            <td><?php echo $prod['id']; ?></td>
+                            <!-- Celda que muestra el nombre del producto -->
+                            <td><?php echo htmlspecialchars($prod['nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
+                            <!-- Celda que muestra la descripción del producto -->
+                            <td><?php echo htmlspecialchars($prod['descripcion'], ENT_QUOTES, 'UTF-8'); ?></td>
+                            <!-- Celda que muestra el precio del producto, formateado con puntos como separadores de miles y sin decimales -->
+                            <td><?php echo '$', number_format($prod['precio'], 0, ',', '.'); ?></td>
+                            <!-- Celda que muestra la imagen del producto, con una anchura de 100px y altura automática -->
+                            <td>
+                                <!-- Mostrar la imagen del producto -->
+                                <img src="assets/img/<?php echo htmlspecialchars($prod['imagen']); ?>" alt="<?php echo htmlspecialchars($prod['nombre']); ?>" style="width: 100px; height: auto;">
+                            </td>
+                            <!-- Celda que muestra el ID de la categoría del producto -->
+                            <td><?php echo htmlspecialchars($prod['categoria_nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        </tr>
+                        <!-- Cierra el bucle PHP -->
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <tr>
-                        <!-- Celda que muestra el ID del producto -->
-                        <td><?php echo $prod['id']; ?></td>
-                        <!-- Celda que muestra el nombre del producto -->
-                        <td><?php echo htmlspecialchars($prod['nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
-                        <!-- Celda que muestra la descripción del producto -->
-                        <td><?php echo htmlspecialchars($prod['descripcion'], ENT_QUOTES, 'UTF-8'); ?></td>
-                        <!-- Celda que muestra el precio del producto, formateado con puntos como separadores de miles y sin decimales -->
-                        <td><?php echo '$', number_format($prod['precio'], 0, ',', '.'); ?></td>
-                        <!-- Celda que muestra la imagen del producto, con una anchura de 100px y altura automática -->
-                        <td>
-                            <!-- Mostrar la imagen del producto -->
-                            <img src="assets/img/<?php echo htmlspecialchars($prod['imagen']); ?>" alt="<?php echo htmlspecialchars($prod['nombre']); ?>" style="width: 100px; height: auto;">
-                        </td>
-                        <!-- Celda que muestra el ID de la categoría del producto -->
-                        <td><?php echo htmlspecialchars($prod['categoria_nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td colspan="6">No se encontraron productos.</td>
                     </tr>
-                    <!-- Cierra el bucle PHP -->
-                <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
         </table>
         <!-- Muestra el texto "Creado por Braulio Ruiz Niñoles" -->

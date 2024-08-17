@@ -1,4 +1,5 @@
 <?php
+
 // Incluye el archivo controlador /backend/categorias.php.
 include '../categorias.php';
 ?>
@@ -55,26 +56,31 @@ include '../categorias.php';
             <!-- Cuerpo de la tabla -->
             <tbody>
                 <!-- Inicia un bucle PHP para recorrer cada categoría -->
-                <?php foreach ($categorias as $cat) : ?>
-                    <!-- Fila de la tabla para cada categoría -->
+                <?php if (is_array($categorias) && count($categorias) > 0): ?>
+                    <?php foreach ($categorias as $cat) : ?>
+                        <!-- Fila de la tabla para cada categoría -->
+                        <tr>
+                            <!-- Celda que muestra el ID de la categoría -->
+                            <td><?php echo $cat['id']; ?></td>
+                            <!-- Celda que muestra el nombre de la categoría -->
+                            <td><?php echo htmlspecialchars($cat['nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
+                            <!-- Celda que muestra el boton "Eliminar" -->
+                            <td>
+                                <!-- Formulario para eliminar la categoria -->
+                                <form method="POST" action="lista_categorias.php">
+                                    <!-- Campo oculto con el ID de la categoria -->
+                                    <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
+                                    <!-- Botón para eliminar la categoria -->
+                                    <button class="delete" type="submit" name="delete" onclick="eliminarCategoria(<?php echo $cat['id']; ?>)">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <tr>
-                        <!-- Celda que muestra el ID de la categoría -->
-                        <td><?php echo $cat['id']; ?></td>
-                        <!-- Celda que muestra el nombre de la categoría -->
-                        <td><?php echo htmlspecialchars($cat['nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
-                        <!-- Celda que muestra el boton "Eliminar" -->
-                        <td>
-                            <!-- Formulario para eliminar la categoria -->
-                            <form method="POST" action="lista_categorias.php">
-                                <!-- Campo oculto con el ID de la categoria -->
-                                <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
-                                <!-- Botón para eliminar la categoria -->
-                                <button class="delete" type="submit" name="delete" onclick="eliminarCategoria(<?php echo $cat['id']; ?>)">Eliminar</button>
-                            </form>
-                        </td>
+                        <td colspan="3">No se encontraron categorías.</td>
                     </tr>
-                    <!-- Fin del bucle PHP -->
-                <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
         </table>
         <!-- Enlace que apunta a 'categorias.html' para agregar nuevas categorías, con la clase 'nav-link' -->
