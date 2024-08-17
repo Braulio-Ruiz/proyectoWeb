@@ -63,30 +63,12 @@ class Categorias
             die("El nombre de la categoría no puede estar vacío.");
         }
     }
-    // Método para contar los productos asociados a esta categoría
-    public function contarProductosAsociados()
-    {
-        // Consulta SQL para contar los productos asociados a la categoría
-        $sql = "SELECT COUNT(*) FROM productos WHERE categoria_id = ?";
-        try {
-            // Ejecuta la consulta con el ID de la categoría
-            return $this->db->select($sql, [$this->id])[0]['COUNT(*)'];
-        } catch (Exception $e) {
-            // Maneja cualquier error durante la consulta
-            die("Error al contar productos asociados: " . $e->getMessage());
-        }
-    }
     // Elimina una categoría de la base de datos utilizando el ID.
     public function eliminar()
     {
         // Verifica que el ID esté definido antes de intentar eliminar la categoría.
         if ($this->id) {
             try {
-                // Verifica si la categoría tiene productos asociados
-                if ($this->contarProductosAsociados() > 0) {
-                    // Lanza una excepción si hay productos asociados a la categoría
-                    die("No se puede eliminar la categoría porque tiene productos asociados.");
-                }
                 // Elimina la categoría de la base de datos según su ID.
                 $this->db->delete('categorias', 'id = ' . $this->id);
             } catch (Exception $e) {

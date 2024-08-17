@@ -57,24 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     $categoria_id = $_POST['id'];
     // Crea una nueva instancia de la clase 'Categorias'.
     $categoria = new Categorias();
-    // Antes de eliminar la categoría, verifica si tiene productos asociados.
-    try {
-        // Consulta para contar cuántos productos están asociados a esta categoría
-        $product_count = $categoria->contarProductosAsociados($categoria_id);
-        // Si hay productos asociados, muestra un mensaje de error y no elimina la categoría
-        if ($product_count > 0) {
-            echo "<script>alert('Error: No se puede eliminar la categoría porque tiene productos asociados.');</script>";
-        } else {
-            // Si no hay productos asociados, procede a eliminar la categoría
-            $categoria->setId($categoria_id);
-            $categoria->eliminar();
-            // Redirige al usuario a la página 'lista_categorias.php' después de eliminar la categoría.
-            header('Location: lista_categorias.php');
-            // Finaliza el script para asegurarse de que no se ejecute ningún código adicional después de la redirección.
-            exit;
-        }
-    } catch (PDOException $e) {
-        // Muestra un mensaje de error en caso de una excepción
-        echo "Error al eliminar la categoría: " . $e->getMessage();
-    }
+    // Establece el ID de la categoría a eliminar utilizando el método 'setId' de la clase 'Categorias'.
+    $categoria->setId($categoria_id);
+    // Llama al método 'eliminar' de la clase 'Categorias' para eliminar la categoría de la base de datos.
+    $categoria->eliminar();
+    // Redirige al usuario a la página 'lista_categorias.php' después de eliminar la categoría.
+    header('Location: lista_categorias.php');
+    // Finaliza el script para asegurarse de que no se ejecute ningún código adicional después de la redirección.
+    exit;
 }
