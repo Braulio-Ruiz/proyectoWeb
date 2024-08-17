@@ -29,10 +29,10 @@ include '../categorias.php';
     </a>
     <!-- Contenedor principal del contenido -->
     <div class="container">
-        <!-- Formulario de busqueda de Categorias -->
+        <!-- Formulario de búsqueda de Categorías -->
         <form method="GET" action="lista_categorias.php">
             <!-- Campo para introducir el término de búsqueda -->
-            <input type="text" name="search" placeholder="Buscar categoria" aria-label="Buscar producto">
+            <input type="text" name="search" placeholder="Buscar categoría" aria-label="Buscar categoría">
             <!-- Botón para enviar la búsqueda -->
             <button class="search" type="submit">Buscar</button>
         </form>
@@ -60,14 +60,14 @@ include '../categorias.php';
                         <td><?php echo $cat['id']; ?></td>
                         <!-- Celda que muestra el nombre de la categoría -->
                         <td><?php echo htmlspecialchars($cat['nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
-                        <!-- Celda que muestra el boton "Eliminar" -->
+                        <!-- Celda que muestra el botón "Eliminar" -->
                         <td>
-                            <!-- Formulario para eliminar la categoria -->
+                            <!-- Formulario para eliminar la categoría -->
                             <form method="POST" action="lista_categorias.php">
-                                <!-- Campo oculto con el ID de la categoria -->
+                                <!-- Campo oculto con el ID de la categoría -->
                                 <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
-                                <!-- Botón para eliminar la categoria -->
-                                <button class="delete" type="submit" name="delete" onclick="eliminarCategoria(<?php echo $cat['id']; ?>)">Eliminar</button>
+                                <!-- Botón para eliminar la categoría con confirmación -->
+                                <button class="delete" type="button" onclick="eliminarCategoria(<?php echo $cat['id']; ?>)">Eliminar</button>
                             </form>
                         </td>
                     </tr>

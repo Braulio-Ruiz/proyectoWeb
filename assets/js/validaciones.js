@@ -1,5 +1,3 @@
-/* Validaciones para los formularios de categorías y productos */
-
 // Esta función se ejecuta cuando el documento HTML está completamente cargado y listo.
 $(document).ready(function () {
     // Maneja los eventos 'keyup' y 'blur' en los campos de entrada dentro de los formularios especificados
