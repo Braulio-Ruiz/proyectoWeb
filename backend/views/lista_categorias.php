@@ -14,6 +14,8 @@ include '../categorias.php';
     <title>Listado de Categorías ..:: SiberOs ::..</title>
     <!-- Vincula el archivo de estilos CSS ubicado en '../../assets/css/estilos.css' -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/estilos.css">
+    <!-- Incluye la biblioteca jQuery Slim Build -->
+    <script src="../../assets/js/jquerySlim.js"></script>
 </head>
 
 <body>
