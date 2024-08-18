@@ -1,5 +1,5 @@
 <?php
-// Incluye el archivo controlador /backend/categorias.php.
+// Incluye el archivo controlador /backend/categorias.php que maneja las operaciones de categorías.
 include '../categorias.php';
 ?>
 
@@ -14,7 +14,7 @@ include '../categorias.php';
     <title>Listado de Categorías ..:: SiberOs ::..</title>
     <!-- Vincula el archivo de estilos CSS ubicado en '../../assets/css/estilos.css' -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/estilos.css">
-    <!-- Incluye la biblioteca jQuery Slim Build -->
+    <!-- Incluye la biblioteca jQuery -->
     <script src="../../assets/js/jquery-3.7.1.min.js"></script>
 </head>
 
@@ -31,10 +31,10 @@ include '../categorias.php';
     </a>
     <!-- Contenedor principal del contenido -->
     <div class="container">
-        <!-- Formulario de busqueda de Categorias -->
+        <!-- Formulario de búsqueda de Categorías -->
         <form method="GET" action="lista_categorias.php">
-            <!-- Campo para introducir el término de búsqueda -->
-            <input type="text" name="search" placeholder="Buscar categoria" aria-label="Buscar producto">
+            <!-- Campo de entrada de texto para la búsqueda de categorías -->
+            <input type="text" name="search" placeholder="Buscar categoría" aria-label="Buscar categoría">
             <!-- Botón para enviar la búsqueda -->
             <button class="search" type="submit">Buscar</button>
         </form>
@@ -54,8 +54,9 @@ include '../categorias.php';
             </thead>
             <!-- Cuerpo de la tabla -->
             <tbody>
-                <!-- Inicia un bucle PHP para recorrer cada categoría -->
+                <!-- Comprueba si la variable $categorias es un array y contiene elementos -->
                 <?php if (is_array($categorias) && count($categorias) > 0): ?>
+                    <!-- Recorre cada categoría en el array $categorias -->
                     <?php foreach ($categorias as $cat) : ?>
                         <!-- Fila de la tabla para cada categoría -->
                         <tr>
@@ -63,19 +64,20 @@ include '../categorias.php';
                             <td><?php echo $cat['id']; ?></td>
                             <!-- Celda que muestra el nombre de la categoría -->
                             <td><?php echo htmlspecialchars($cat['nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
-                            <!-- Celda que muestra el boton "Eliminar" -->
+                            <!-- Celda que muestra los botones de acción para la categoría -->
                             <td>
-                                <!-- Formulario para eliminar la categoria -->
+                                <!-- Formulario para eliminar la categoría -->
                                 <form method="POST" action="lista_categorias.php">
-                                    <!-- Campo oculto con el ID de la categoria -->
+                                    <!-- Campo oculto con el ID de la categoría -->
                                     <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
-                                    <!-- Botón para eliminar la categoria -->
-                                    <button class="deleteCat" type="submit" name="delete" onclick="eliminarCategoria(<?php echo $cat['id']; ?>)">Eliminar</button>
+                                    <!-- Botón para eliminar la categoría -->
+                                    <button class="deleteCat" type="submit" name="delete" onclick="return confirm('¿Estás seguro de eliminar esta categoría?');">Eliminar</button>
                                 </form>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
+                    <!-- Fila que se muestra si no hay categorías disponibles -->
                     <tr>
                         <td colspan="3">No se encontraron categorías.</td>
                     </tr>

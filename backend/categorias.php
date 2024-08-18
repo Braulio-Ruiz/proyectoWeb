@@ -15,28 +15,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $categoria = new Categorias();
             // Establece el ID de la categoría a eliminar utilizando el método 'setId' de la clase 'Categorias'.
             $categoria->setId($categoria_id);
+            // Inicia un bloque try-catch para manejar posibles excepciones al eliminar la categoría.
             try {
-                // Intenta eliminar la categoría
+                // Intenta eliminar la categoría.
                 $resultado = $categoria->eliminar();
-                // Verifica si la eliminación fue exitosa
+                // Verifica si la eliminación fue exitosa.
                 if ($resultado) {
-                    // Envía una respuesta JSON de éxito
+                    // Envía una respuesta JSON de éxito.
                     header('Content-Type: application/json');
                     echo json_encode(array('success' => true, 'message' => 'Categoría eliminada correctamente.'));
                 } else {
-                    // Envía una respuesta JSON de error si la eliminación falló
+                    // Si la eliminación falla, podría ser debido a productos asociados. Muestra un mensaje adecuado.
                     header('Content-Type: application/json');
-                    echo json_encode(array('success' => false, 'error' => 'No se pudo eliminar la categoría. Puede que tenga productos asociados.'));
+                    echo json_encode(array('success' => false, 'error' => 'No se pudo eliminar la categoría. Verifica si tiene productos asociados.'));
                 }
             } catch (Exception $e) {
-                // Envía una respuesta JSON de error si ocurre una excepción
+                // Maneja la excepción de eliminación fallida (por ejemplo, debido a restricciones de clave foránea).
                 header('Content-Type: application/json');
                 echo json_encode(array('success' => false, 'error' => 'Error al eliminar la categoría: ' . $e->getMessage()));
             }
-            // Finaliza el script para asegurar que no se ejecute ningún código adicional
+            // Finaliza el script para asegurar que no se ejecute ningún código adicional.
             exit;
         } else {
-            // Envía una respuesta JSON de error si el ID de la categoría no es válido
+            // Envía una respuesta JSON de error si el ID de la categoría no es válido.
             header('Content-Type: application/json');
             echo json_encode(array('success' => false, 'error' => 'ID de categoría no proporcionado.'));
             exit;
@@ -46,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : null;
     // Verifica si la variable $nombre tiene un valor.
     if ($nombre) {
-        // Sanitiza la entrada para evitar XSS
+        // Sanitiza la entrada para evitar XSS.
         $nombre = htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8');
         // Crea una nueva instancia de la clase Categorias.
         $categoria = new Categorias();
@@ -59,31 +60,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Finaliza el script para asegurar que no se ejecute ningún código adicional.
         exit;
     } else {
-        // Envía una respuesta JSON de error si no se proporcionaron todos los datos necesarios
+        // Envía una respuesta JSON de error si no se proporcionaron todos los datos necesarios.
         header('Content-Type: application/json');
         echo json_encode(array('success' => false, 'error' => 'Datos no proporcionados.'));
         exit;
     }
 }
 
-// Verifica si el formulario de búsqueda fue enviado (solicitud GET)
+// Verifica si el formulario de búsqueda fue enviado (solicitud GET).
 if (isset($_GET['search'])) {
-    // Asigna el valor de la búsqueda a la variable $search
+    // Asigna el valor de la búsqueda a la variable $search.
     $search = $_GET['search'];
-}
-// Si no se realizó ninguna búsqueda, establece $search como una cadena vacía
-else {
+} else {
+    // Si no se realizó ninguna búsqueda, establece $search como una cadena vacía.
     $search = '';
 }
 
-// Crea una instancia de la clase Categorias
+// Crea una instancia de la clase Categorias.
 $categoria = new Categorias();
 
-// Si hay un término de búsqueda, busca las categorías que coincidan
+// Si hay un término de búsqueda, busca las categorías que coincidan.
 if (!empty($search)) {
     $categorias = $categoria->buscar($search);
-}
-// Si no hay búsqueda, obtiene todas las categorías
-else {
+} else {
+    // Si no hay búsqueda, obtiene todas las categorías.
     $categorias = $categoria->obtenerTodas();
 }

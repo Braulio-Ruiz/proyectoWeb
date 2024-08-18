@@ -78,16 +78,16 @@ class Database
         }
     }
     // Método para eliminar datos de una tabla específica de la base de datos.
-    public function delete($table, $where)
+    public function delete($table, $whereClause, $params = [])
     {
         // Construir la consulta SQL de eliminación utilizando la tabla y la condición WHERE.
-        $sql = "DELETE FROM $table WHERE $where";
+        $sql = "DELETE FROM $table WHERE $whereClause";
         // Intentamos ejecutar el siguiente bloque de código.
         try {
             // Preparar la consulta SQL para su ejecución.
             $stmt = $this->pdo->prepare($sql);
             // Ejecutar la consulta.
-            $stmt->execute();
+            $stmt->execute($params);
         }
         // Si ocurre un error durante la ejecución de la consulta, capturamos la excepción PDOException.
         catch (PDOException $e) {

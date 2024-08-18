@@ -69,7 +69,13 @@ class Categorias
         // Verifica que el ID esté definido antes de intentar eliminar la categoría.
         if ($this->id) {
             try {
-                // Elimina la categoría de la base de datos según su ID.
+                // Primero, verifica si hay productos asociados con esta categoría.
+                $productosAsociados = $this->db->select('SELECT COUNT(*) as count FROM productos WHERE categoria_id = ?', [$this->id]);
+                // Si existen productos asociados, no permite la eliminación y lanza una excepción.
+                if ($productosAsociados[0]['count'] > 0) {
+                    throw new Exception('No se puede eliminar la categoría porque tiene productos asociados.');
+                }
+                // Si no hay productos asociados, procede a eliminar la categoría.
                 $this->db->delete('categorias', 'id = ' . $this->id);
             } catch (Exception $e) {
                 // Maneja cualquier error durante la operación de eliminación.
