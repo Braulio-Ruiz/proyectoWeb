@@ -15,7 +15,7 @@ include '../productos.php';
     <!-- Vincula el archivo de estilos CSS ubicado en '../../assets/css/estilos.css' -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/estilos.css">
     <!-- Incluye la biblioteca jQuery Slim Build -->
-    <script src="../../assets/js/jquerySlim.js"></script>
+    <script src="../../assets/js/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
@@ -89,7 +89,7 @@ include '../productos.php';
                                     <!-- Campo oculto con el ID del producto -->
                                     <input type="hidden" name="id" value="<?php echo $prod['id']; ?>">
                                     <!-- Botón para eliminar el producto -->
-                                    <button class="delete" type="submit" name="delete" onclick="eliminarProducto(<?php echo $prod['id']; ?>)">Eliminar</button>
+                                    <button class="deleteProd" type="submit" name="delete" onclick="eliminarProducto(<?php echo $prod['id']; ?>)">Eliminar</button>
                                 </form>
                             </td>
                         </tr>

@@ -15,7 +15,7 @@ include '../categorias.php';
     <!-- Vincula el archivo de estilos CSS ubicado en '../../assets/css/estilos.css' -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/estilos.css">
     <!-- Incluye la biblioteca jQuery Slim Build -->
-    <script src="../../assets/js/jquerySlim.js"></script>
+    <script src="../../assets/js/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
@@ -70,7 +70,7 @@ include '../categorias.php';
                                     <!-- Campo oculto con el ID de la categoria -->
                                     <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
                                     <!-- Botón para eliminar la categoria -->
-                                    <button class="delete" type="submit" name="delete" onclick="eliminarCategoria(<?php echo $cat['id']; ?>)">Eliminar</button>
+                                    <button class="deleteCat" type="submit" name="delete" onclick="eliminarCategoria(<?php echo $cat['id']; ?>)">Eliminar</button>
                                 </form>
                             </td>
                         </tr>

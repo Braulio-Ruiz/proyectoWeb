@@ -154,7 +154,7 @@ button[class="search"]:hover {
 }
 
 /* Estilo específico para botones de clase 'delete' */
-button[class="delete"] {
+button[class="deleteProd"] {
     /* Color gris para el botón de eliminación */
     background-color: #c7c6c6;
     /* Limita el ancho máximo del botón */
@@ -166,7 +166,25 @@ button[class="delete"] {
 }
 
 /* Estilo para los botones de eliminación al pasar el cursor */
-button[class="delete"]:hover {
+button[class="deleteProd"]:hover {
+    /* Cambia el color de fondo a rojo cuando se pasa el cursor */
+    background-color: #e30000;
+}
+
+/* Estilo específico para botones de clase 'delete' */
+button[class="deleteCat"] {
+    /* Color gris para el botón de eliminación */
+    background-color: #c7c6c6;
+    /* Limita el ancho máximo del botón */
+    max-width: 100px;
+    /* Añade margen alrededor del botón */
+    margin: 10px;
+    /* Centra el botón dentro de su contenedor */
+    align-self: center;
+}
+
+/* Estilo para los botones de eliminación al pasar el cursor */
+button[class="deleteCat"]:hover {
     /* Cambia el color de fondo a rojo cuando se pasa el cursor */
     background-color: #e30000;
 }

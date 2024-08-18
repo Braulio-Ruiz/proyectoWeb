@@ -17,7 +17,7 @@ include '../categorias.php';
     <!-- Vincula el archivo de estilos CSS ubicado en '../../assets/css/estilos.css' -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/estilos.css">
     <!-- Incluye la biblioteca jQuery Slim Build -->
-    <script src="../../assets/js/jquerySlim.js"></script>
+    <script src="../../assets/js/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>

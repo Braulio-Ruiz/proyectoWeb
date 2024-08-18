@@ -5,6 +5,24 @@ include __DIR__ . '/../class/autoload.php';
 
 // Verifica si la solicitud HTTP es de tipo POST, lo que indica que el formulario fue enviado.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Verifica si la solicitud es para eliminar un producto.
+    if (isset($_POST['eliminar']) && isset($_POST['id'])) {
+        $producto_id = $_POST['id'];  // Obtiene el ID del producto a eliminar.
+        // Crea una nueva instancia de la clase 'Productos'.
+        $producto = new Productos();
+        // Establece el ID del producto a eliminar utilizando el método 'setId'.
+        $producto->setId($producto_id);
+        // Manejo de errores al intentar eliminar un producto.
+        try {
+            $producto->eliminar();  // Elimina el producto de la base de datos.
+            // Responde con un mensaje de éxito si la eliminación se realiza correctamente.
+            echo json_encode(['success' => true, 'message' => 'Producto eliminado con éxito.']);
+        } catch (PDOException $e) {
+            // En caso de un error, envía un mensaje de error.
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar el producto: ' . $e->getMessage()]);
+        }
+        exit;  // Finaliza el script para asegurarse de que no se ejecute ningún código adicional.
+    }
     // Obtener y sanitizar los datos del formulario.
     $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : null;
     $descripcion = isset($_POST['descripcion']) ? trim($_POST['descripcion']) : null;
@@ -24,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $target_file = $target_dir . basename($imagen);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        // Compruebe si el archivo de imagen es una imagen
+        // Comprueba si el archivo de imagen es una imagen.
         $check = getimagesize($_FILES['imagen']['tmp_name']);
         if ($check !== false) {
             $uploadOk = 1;
@@ -32,22 +50,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "El archivo no es una imagen.";
             $uploadOk = 0;
         }
-        // Comprobar si el archivo ya existe
+        // Comprueba si el archivo ya existe.
         if (file_exists($target_file)) {
             echo "Lo siento, el archivo ya existe.";
             $uploadOk = 0;
         }
-        // Comprobar el tamaño del archivo
+        // Comprueba el tamaño del archivo.
         if ($_FILES['imagen']['size'] > 500000) { // 500KB max file size
             echo "Lo siento, tu archivo es demasiado grande.";
             $uploadOk = 0;
         }
-        // Limitar los formatos permitidos.
+        // Limita los formatos permitidos.
         if (!in_array($imageFileType, ['jpg', 'png', 'jpeg', 'gif'])) {
             echo "Lo siento, solo se permiten archivos JPG, JPEG, PNG & GIF.";
             $uploadOk = 0;
         }
-        // Si todo es correcto, mover el archivo al directorio final.
+        // Si todo es correcto, mueve el archivo al directorio final.
         if ($uploadOk == 1) {
             if (move_uploaded_file($_FILES['imagen']['tmp_name'], $target_file)) {
                 // Crea una nueva instancia de la clase Productos.
@@ -77,30 +95,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Lo siento, tu archivo no fue subido.";
         }
     } else {
-        // Si el datos no son completados, muestra un mensaje de error.
+        // Si los datos no están completos, muestra un mensaje de error.
         echo "Error: Datos no proporcionados.";
     }
 }
 
-// Verifica si el formulario de búsqueda fue enviado (solicitud GET)
+// Verifica si el formulario de búsqueda fue enviado (solicitud GET).
 if (isset($_GET['search'])) {
-    // Asigna el valor de la búsqueda a la variable $search
+    // Asigna el valor de la búsqueda a la variable $search.
     $search = $_GET['search'];
-}
-// Si no se realizó ninguna búsqueda, establece $search como una cadena vacía
-else {
+} else {
+    // Si no se realizó ninguna búsqueda, establece $search como una cadena vacía.
     $search = '';
 }
 
-// Crea una instancia de la clase Categorias
+// Crea una instancia de la clase Productos.
 $producto = new Productos();
 
-// Si hay un término de búsqueda, busca las categorías que coincidan
+// Si hay un término de búsqueda, busca los productos que coincidan.
 if (!empty($search)) {
     $productos = $producto->buscar($search);
-}
-// Si no hay búsqueda, obtiene todas las categorías
-else {
+} else {
+    // Si no hay búsqueda, obtiene todos los productos.
     $productos = $producto->obtenerTodos();
 }
 
