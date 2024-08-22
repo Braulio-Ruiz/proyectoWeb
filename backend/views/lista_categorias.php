@@ -7,16 +7,13 @@ include '../categorias.php';
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8" />
+   <meta charset="UTF-8">
    <!-- Configura la ventana gráfica para que sea responsive, ajustándose al ancho del dispositivo -->
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <!-- Define el título del documento que se muestra en la pestaña del navegador -->
    <title>Listado de Categorías ..:: SiberOs ::..</title>
    <!-- Vincula el archivo de estilos CSS ubicado en '../../assets/css/estilos.css' -->
-   <link
-      rel="stylesheet"
-      type="text/css"
-      href="../../assets/css/estilos.css" />
+   <link rel="stylesheet" type="text/css" href="../../assets/css/estilos.css">
 </head>
 
 <body>
@@ -25,10 +22,7 @@ include '../categorias.php';
       <!-- Inicio de la sección de encabezado del documento -->
       <header>
          <!-- Imagen del logo de la empresa, ubicada en '../../assets/img/logo.png', con texto alternativo y clase 'logo' -->
-         <img
-            src="../../assets/img/logo.png"
-            alt="Logo de la Empresa"
-            class="logo" />
+         <img src="../../assets/img/logo.png" alt="Logo de la Empresa" class="logo">
          <!-- Título de nivel 1 que indica el contenido de la página: Listado de Categorías -->
          <h1>Listado de Categorías</h1>
       </header>
@@ -38,11 +32,7 @@ include '../categorias.php';
       <!-- Formulario de busqueda de Categorias -->
       <form method="GET" action="lista_categorias.php">
          <!-- Campo para introducir el término de búsqueda -->
-         <input
-            type="text"
-            name="search"
-            placeholder="Buscar categoria"
-            aria-label="Buscar producto" />
+         <input type="text" name="search" placeholder="Buscar categoria" aria-label="Buscar producto">
          <!-- Botón para enviar la búsqueda -->
          <button class="search" type="submit">Buscar</button>
       </form>
@@ -69,26 +59,15 @@ include '../categorias.php';
                   <!-- Celda que muestra el ID de la categoría -->
                   <td><?php echo $cat['id']; ?></td>
                   <!-- Celda que muestra el nombre de la categoría -->
-                  <td>
-                     <?php echo htmlspecialchars($cat['nombre'], ENT_QUOTES, 'UTF-8'); ?>
-                  </td>
+                  <td><?php echo htmlspecialchars($cat['nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
                   <!-- Celda que muestra el boton "Eliminar" -->
                   <td>
                      <!-- Formulario para eliminar la categoria -->
                      <form method="POST" action="lista_categorias.php">
                         <!-- Campo oculto con el ID de la categoria -->
-                        <input
-                           type="hidden"
-                           name="id"
-                           value="<?php echo $cat['id']; ?>" />
+                        <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
                         <!-- Botón para eliminar la categoria -->
-                        <button
-                           class="delete"
-                           type="submit"
-                           name="delete"
-                           onclick="eliminarCategoria(<?php echo $cat['id']; ?>)">
-                           Eliminar
-                        </button>
+                        <button class="delete" type="submit" name="delete" onclick="eliminarCategoria(<?php echo $cat['id']; ?>)">Eliminar</button>
                      </form>
                   </td>
                </tr>

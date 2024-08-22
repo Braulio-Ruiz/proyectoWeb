@@ -20,7 +20,7 @@ header {
    /* Altura ajustable en función del tamaño de la ventana */
    height: 8vh;
    /* Color de texto inicial */
-   color: #007bff;
+   color: #007BFF;
    /* Fondo blanco para la cabecera */
    background-color: #ffffff;
    /* Alinea verticalmente los elementos en el centro */
@@ -36,7 +36,7 @@ header {
 /* Cambia el color de fondo y el texto cuando se pasa el cursor sobre la cabecera */
 header:hover {
    /* Cambia el color de fondo al color de acento */
-   background-color: #007bff;
+   background-color: #007BFF;
    /* Cambia el color del texto a blanco */
    color: #ffffff;
 }
@@ -122,7 +122,7 @@ input {
 /* Estilo para los botones */
 button {
    /* Color de fondo azul para los botones */
-   background-color: #007bff;
+   background-color: #007BFF;
    /* Elimina el borde del botón */
    border: none;
    /* Bordes redondeados para el botón */
@@ -214,7 +214,7 @@ p {
    /* Añade espaciado interno a los enlaces */
    padding: 10px 20px;
    /* Color de fondo azul para los enlaces */
-   background-color: #007bff;
+   background-color: #007BFF;
    /* Color del texto en blanco */
    color: #fff;
    /* Elimina la decoración del texto (subrayado) */
@@ -283,6 +283,7 @@ textarea.error {
 
 /* Media queries para dispositivos móviles */
 @media (max-width: 768px) {
+
    /* Ajusta el ancho del header */
    header {
       height: 12vw;
