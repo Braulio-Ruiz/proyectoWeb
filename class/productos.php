@@ -116,7 +116,7 @@ class Productos
    {
       // Define una consulta SQL para seleccionar todos los productos y el nombre de la categoría.
       $sql = 'SELECT p.*, c.nombre AS categoria_nombre FROM productos p
-                JOIN categorias c ON p.categoria_id = c.id';
+               JOIN categorias c ON p.categoria_id = c.id';
       try {
          // Ejecuta la consulta SQL y devuelve los resultados.
          return $this->db->select($sql);
@@ -132,8 +132,8 @@ class Productos
       $search = "%{$term}%";
       // Define una consulta SQL para buscar productos por nombre.
       $sql = "SELECT p.*, c.nombre AS categoria_nombre FROM productos p
-                JOIN categorias c ON p.categoria_id = c.id
-                WHERE p.nombre LIKE ?";
+               JOIN categorias c ON p.categoria_id = c.id
+               WHERE p.nombre LIKE ?";
       try {
          // Ejecuta la consulta SQL con el término de búsqueda y devuelve los resultados.
          return $this->db->select($sql, [$search]);
