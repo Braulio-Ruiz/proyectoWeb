@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $precio = isset($_POST['precio']) ? trim($_POST['precio']) : null;
     $categoria_id = isset($_POST['categoria_id']) ? trim($_POST['categoria_id']) : null;
     $imagen = isset($_FILES['imagen']['name']) ? $_FILES['imagen']['name'] : null;
-    // Sanitizar las entradas para evitar XSS
+    // Validar y sanitizar los datos.
     $nombre = htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8');
     $descripcion = htmlspecialchars($descripcion, ENT_QUOTES, 'UTF-8');
     $precio = htmlspecialchars($precio, ENT_QUOTES, 'UTF-8');
@@ -24,27 +24,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $target_file = $target_dir . basename($imagen);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        // Comprueba si el archivo de imagen es una imagen.
+        // Compruebe si el archivo de imagen es una imagen
         $check = getimagesize($_FILES['imagen']['tmp_name']);
         if ($check !== false) {
             $uploadOk = 1;
         } else {
-            echo json_encode(array('success' => false, 'error' => 'El archivo no es una imagen.'));
+            echo "El archivo no es una imagen.";
             $uploadOk = 0;
         }
-        // Comprobar si el archivo ya existe.
+        // Comprobar si el archivo ya existe
         if (file_exists($target_file)) {
-            echo json_encode(array('success' => false, 'error' => 'Lo siento, el archivo ya existe.'));
+            echo "Lo siento, el archivo ya existe.";
             $uploadOk = 0;
         }
-        // Comprobar el tamaño del archivo.
-        if ($_FILES['imagen']['size'] > 500000) { // 500KB max file size.
-            echo json_encode(array('success' => false, 'error' => 'Lo siento, tu archivo es demasiado grande.'));
+        // Comprobar el tamaño del archivo
+        if ($_FILES['imagen']['size'] > 500000) { // 500KB max file size
+            echo "Lo siento, tu archivo es demasiado grande.";
             $uploadOk = 0;
         }
         // Limitar los formatos permitidos.
         if (!in_array($imageFileType, ['jpg', 'png', 'jpeg', 'gif'])) {
-            echo json_encode(array('success' => false, 'error' => 'Lo siento, solo se permiten archivos JPG, JPEG, PNG & GIF.'));
+            echo "Lo siento, solo se permiten archivos JPG, JPEG, PNG & GIF.";
             $uploadOk = 0;
         }
         // Si todo es correcto, mover el archivo al directorio final.
@@ -52,78 +52,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (move_uploaded_file($_FILES['imagen']['tmp_name'], $target_file)) {
                 // Crea una nueva instancia de la clase Productos.
                 $producto = new Productos();
-                // Establece los atributos del producto usando los métodos correspondientes.
+                // Establece el nombre del producto usando el método setNombre().
                 $producto->setNombre($nombre);
+                // Establece la descripción del producto usando el método setDescripcion().
                 $producto->setDescripcion($descripcion);
+                // Establece la imagen del producto usando el método setImagen().
                 $producto->setImagen($imagen);
+                // Establece el precio del producto usando el método setPrecio().
                 $producto->setPrecio($precio);
+                // Establece la categoría del producto usando el método setCategoriaId().
                 $producto->setCategoriaId($categoria_id);
-                // Guarda el producto en la base de datos.
+                // Guarda el producto en la base de datos usando el método guardar().
                 $producto->guardar();
                 // Redirige al usuario a la página 'lista_productos.php' en el directorio 'views/'.
                 header('Location: views/lista_productos.php');
+                // Finaliza el script para asegurar que no se ejecute ningún código adicional.
                 exit;
             } else {
                 // Si el archivo no se pudo mover, muestra un mensaje de error.
-                echo json_encode(array('success' => false, 'error' => 'Error al subir la imagen.'));
+                echo "Error al subir la imagen.";
             }
         } else {
             // Si el archivo no se pudo subir, muestra un mensaje de error.
-            echo json_encode(array('success' => false, 'error' => 'Lo siento, tu archivo no fue subido.'));
+            echo "Lo siento, tu archivo no fue subido.";
         }
     } else {
-        // Si los datos no están completos, muestra un mensaje de error.
-        echo json_encode(array('success' => false, 'error' => 'Error: Datos no proporcionados.'));
+        // Si el datos no son completados, muestra un mensaje de error.
+        echo "Error: Datos no proporcionados.";
     }
 }
 
-// Verifica si el formulario de búsqueda fue enviado (solicitud GET).
+// Verifica si el formulario de búsqueda fue enviado (solicitud GET)
 if (isset($_GET['search'])) {
+    // Asigna el valor de la búsqueda a la variable $search
     $search = $_GET['search'];
-} else {
+}
+// Si no se realizó ninguna búsqueda, establece $search como una cadena vacía
+else {
     $search = '';
 }
 
-// Crea una instancia de la clase Productos.
+// Crea una instancia de la clase Categorias
 $producto = new Productos();
 
-// Si hay un término de búsqueda, busca los productos que coincidan.
+// Si hay un término de búsqueda, busca las categorías que coincidan
 if (!empty($search)) {
     $productos = $producto->buscar($search);
-} else {
-    // Si no hay búsqueda, obtiene todos los productos.
+}
+// Si no hay búsqueda, obtiene todas las categorías
+else {
     $productos = $producto->obtenerTodos();
 }
 
 // Verifica si la solicitud HTTP es de tipo POST y si el campo 'delete' está presente en la solicitud.
+// Esto indica que se ha enviado un formulario de eliminación.
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     // Obtiene el valor del campo 'id' del formulario enviado y lo asigna a la variable $producto_id.
-    $producto_id = isset($_POST['id']) ? trim($_POST['id']) : null;
-    if ($producto_id) {
-        // Crea una nueva instancia de la clase 'Productos'.
-        $producto = new Productos();
-        // Establece el ID del producto a eliminar.
-        $producto->setId($producto_id);
-        try {
-            // Intenta eliminar el producto.
-            $resultado = $producto->eliminar();
-            // Verifica si la eliminación fue exitosa.
-            if ($resultado) {
-                // Redirige al usuario a la página 'lista_productos.php' después de eliminar el producto.
-                header('Location: lista_productos.php');
-                exit;
-            } else {
-                // Muestra un mensaje de error si la eliminación falló.
-                echo json_encode(array('success' => false, 'error' => 'No se pudo eliminar el producto.'));
-            }
-        } catch (Exception $e) {
-            // Muestra un mensaje de error si ocurre una excepción.
-            echo json_encode(array('success' => false, 'error' => 'Error al eliminar el producto: ' . $e->getMessage()));
-        }
-    } else {
-        // Muestra un mensaje de error si el ID del producto no es válido.
-        echo json_encode(array('success' => false, 'error' => 'ID de producto no proporcionado.'));
-    }
-    // Finaliza el script para asegurar que no se ejecute ningún código adicional.
+    $producto_id = $_POST['id'];
+    // Crea una nueva instancia de la clase 'Productos'.
+    $producto = new Productos();
+    // Establece el ID del producto a eliminar utilizando el método 'setId' de la clase 'Productos'.
+    $producto->setId($producto_id);
+    // Llama al método 'eliminar' de la clase 'Productos' para eliminar el producto de la base de datos.
+    $producto->eliminar();
+    // Redirige al usuario a la página 'lista_productos.php' después de eliminar el producto.
+    header('Location: lista_productos.php');
+    // Finaliza el script para asegurarse de que no se ejecute ningún código adicional después de la redirección.
     exit;
 }
