@@ -1,50 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <!-- Configura la ventana gráfica para que sea responsive, ajustándose al ancho del dispositivo -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <!-- Define el título del documento que se muestra en la pestaña del navegador -->
+      <title>Agregar categorías ..:: SiberOS ::..</title>
+      <!-- Vincula el archivo de estilos CSS ubicado en '../../assets/css/estilos.css' -->
+      <link
+         rel="stylesheet"
+         type="text/css"
+         href="../../assets/css/estilos.css"
+      />
+      <!-- Incluye la biblioteca jQuery desde una CDN, con una versión específica y una verificación de integridad -->
+      <script
+         src="https://code.jquery.com/jquery-3.7.1.min.js"
+         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+         crossorigin="anonymous"
+      ></script>
+   </head>
 
-<head>
-    <meta charset="UTF-8">
-    <!-- Configura la ventana gráfica para que sea responsive, ajustándose al ancho del dispositivo -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Define el título del documento que se muestra en la pestaña del navegador -->
-    <title>Agregar categorías ..:: SiberOS ::..</title>
-    <!-- Vincula el archivo de estilos CSS ubicado en '../../assets/css/estilos.css' -->
-    <link rel="stylesheet" type="text/css" href="../../assets/css/estilos.css">
-    <!-- Incluye la biblioteca jQuery desde una CDN, con una versión específica y una verificación de integridad -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <!-- Enlace que apunta a la página 'index.php' ubicada en el directorio '../../' -->
-    <a href="../../index.php">
-        <!-- Inicio de la sección de encabezado del documento -->
-        <header>
+   <body>
+      <!-- Enlace que apunta a la página 'index.php' ubicada en el directorio '../../' -->
+      <a href="../../index.php">
+         <!-- Inicio de la sección de encabezado del documento -->
+         <header>
             <!-- Imagen del logo de la empresa, ubicada en '../../assets/img/logo.png', con texto alternativo y clase 'logo' -->
-            <img src="../../assets/img/logo.png" alt="Logo de la Empresa" class="logo">
+            <img
+               src="../../assets/img/logo.png"
+               alt="Logo de la Empresa"
+               class="logo"
+            />
             <!-- Título de nivel 1 que indica la acción de agregar nuevas categorías -->
             <h1>Agregar nuevas categorías</h1>
-        </header>
-    </a>
-    <!-- Contenedor principal del contenido -->
-    <div class="container">
-        <!-- Inicio del formulario con id 'formCategorias', que envía datos a 'categorias.php' en el directorio '../' usando el método POST -->
-        <form id="formCategorias" action="../categorias.php" method="post">
+         </header>
+      </a>
+      <!-- Contenedor principal del contenido -->
+      <div class="container">
+         <!-- Inicio del formulario con id 'formCategorias', que envía datos a 'categorias.php' en el directorio '../' usando el método POST -->
+         <form id="formCategorias" action="../categorias.php" method="post">
             <!-- Etiqueta para el campo de entrada 'nombreCategoria' -->
             <label for="nombreCategoria">Nombre de la Categoría:</label>
             <!-- Campo de entrada de texto con id 'nombreCategoria' y nombre 'nombre' -->
-            <input type="text" id="nombreCategoria" name="nombre" aria-label="Nombre de la Categoría">
+            <input
+               type="text"
+               id="nombreCategoria"
+               name="nombre"
+               aria-label="Nombre de la Categoría"
+            />
             <!-- Botón para enviar el formulario con el texto 'Guardar' -->
             <button type="submit">Guardar</button>
             <!-- Botón para restablecer el formulario con la clase 'btn-cancelar' y el texto 'Cancelar' -->
             <button class="btn-cancelar" type="reset">Cancelar</button>
-        </form>
-        <!-- Párrafo con el texto 'Creado por Braulio Ruiz Niñoles' -->
-        <p>Creado por Braulio Ruiz Niñoles</p>
-    </div>
-    <!-- Incluye el archivo JavaScript de validaciones ubicado en '../../assets/js/validaciones.js' -->
-    <script src="../../assets/js/validaciones.js"></script>
-    <!-- Incluye el archivo JavaScript principal ubicado en '../../assets/js/main.js' -->
-    <script src="../../assets/js/main.js"></script>
-</body>
-
+         </form>
+         <!-- Párrafo con el texto 'Creado por Braulio Ruiz Niñoles' -->
+         <p>Creado por Braulio Ruiz Niñoles</p>
+      </div>
+      <!-- Incluye el archivo JavaScript de validaciones ubicado en '../../assets/js/validaciones.js' -->
+      <script src="../../assets/js/validaciones.js"></script>
+      <!-- Incluye el archivo JavaScript principal ubicado en '../../assets/js/main.js' -->
+      <script src="../../assets/js/main.js"></script>
+   </body>
 </html>
