@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($nombre) {
         // Sanitiza la entrada para evitar XSS
         $nombre = htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8');
-        // Crea una nueva instancia de la clase Categorias.
+        // Crea una nueva instancia de la clase Categorías.
         $categoria = new Categorias();
         // Establece el nombre de la categoría usando el método setNombre().
         $categoria->setNombre($nombre);
@@ -38,7 +38,7 @@ else {
     $search = '';
 }
 
-// Crea una instancia de la clase Categorias
+// Crea una instancia de la clase Categorías
 $categoria = new Categorias();
 
 // Si hay un término de búsqueda, busca las categorías que coincidan
